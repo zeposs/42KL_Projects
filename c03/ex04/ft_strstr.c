@@ -1,44 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/09 17:42:19 by zernest           #+#    #+#             */
-/*   Updated: 2024/05/10 20:13:01 by zernest          ###   ########.fr       */
+/*   Created: 2024/05/10 20:04:44 by zernest           #+#    #+#             */
+/*   Updated: 2024/05/10 20:12:59 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <unistd.h>
 
-char *ft_strcat(char *dest, char *src)
+char	*ft_strstr(char *str, char *to_find)
 {
-    int i;
-    int j;
+	while (*str)
+	{
+		int i;
+		int temp;
 
-    i = 0;
-    j = 0;
-    while (dest[i] != '\0')
-    {
-        i++;
-    }
-
-    while (src[j] != '\0')
-    {
-        dest[i] = src [j];
-        i++;
-        j++;
-    }
-    dest[i] = '\0';
-    return (dest);
+		if (to_find = '\0')
+			return (str);
+		if (*str == *to_find)
+		{
+			i = 0;
+			temp = 0;
+			while (to_find[i] != '\0')
+			{
+				if (str[i] != to_find[i])
+					temp = 1;
+				i++;
+			}
+			if (temp = 0)
+				return (str);
+		}
+	}
+	str++;
 }
 
-/* int main(void)
+int main(void)
 {
-    char    dest[] = "hello";
-    char    src[] =  "world";
-
-    ft_strcat(dest, src);
-    write (1, dest, 50);
-} */
+    char a = 0;
+    a = ft_strstr("hey hi halo", "hi");
+    printf ("%d\n", a);
+}
