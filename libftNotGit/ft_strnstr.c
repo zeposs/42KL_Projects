@@ -1,27 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/08 16:01:03 by zernest           #+#    #+#             */
-/*   Updated: 2024/06/10 17:53:00 by zernest          ###   ########.fr       */
+/*   Created: 2024/06/10 17:43:35 by zernest           #+#    #+#             */
+/*   Updated: 2024/06/10 18:10:57 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	while (*s != '\0')
+	int		i;
+	int		temp;
+	size_t	j;
+
+	j = 0;
+	if (*little == '\0')
+		return ((char *)big);
+	while (*big && j < len)
 	{
-		if (*s == c)
+		if (*big == *little)
 		{
-			return ((char *)s);
+			i = -1;
+			temp = 0;
+			while (little[++i] != '\0')
+			{
+				if (big[i] != little[i])
+					temp = 1;
+			}
+			if (temp == 0)
+				return ((char *)big);
 		}
-		else
-			s++;
+		big++;
+		j++;
 	}
 	return (NULL);
 }
@@ -30,13 +45,8 @@ char	*ft_strchr(const char *s, int c)
 
 int	main(void)
 {
-	const char str[] = "Hello World!";
-	const char ch = 'o';
-	char *ret;
-
-	ret = ft_strchr(str, ch);
-
-	printf("%s", ret);
-
+	char *a;
+	a = ft_strnstr("hello world", "ello", 1);
+	printf("%s\n", a);
 	return (0);
 } */

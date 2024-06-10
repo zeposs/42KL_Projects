@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 14:11:37 by zernest           #+#    #+#             */
-/*   Updated: 2024/06/05 19:18:36 by zernest          ###   ########.fr       */
+/*   Updated: 2024/06/10 17:54:26 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
-	size_t	i;
+	size_t			i;
 	unsigned char	*dest;
 	unsigned char	*source;
 

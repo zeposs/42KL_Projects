@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 18:10:06 by zernest           #+#    #+#             */
-/*   Updated: 2024/06/05 20:09:51 by zernest          ###   ########.fr       */
+/*   Updated: 2024/06/10 17:52:42 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	return (dest);
 }
 
-#include <stdio.h>
+/* #include <stdio.h>
 
 int	main(void)
 {
@@ -46,4 +46,4 @@ int	main(void)
 	char dst[30];
 	ft_memmove(src + 2, src, 2);
 	printf("%s", dst);
-}
+} */
