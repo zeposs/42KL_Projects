@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strtrimNOTDONE.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 15:38:38 by zernest           #+#    #+#             */
-/*   Updated: 2024/06/11 18:43:00 by zernest          ###   ########.fr       */
+/*   Created: 2024/06/11 20:31:03 by zernest           #+#    #+#             */
+/*   Updated: 2024/06/11 21:45:45 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	ft_strlen(char const *str)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	i;
 
-	i = 0;
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
+	
 }
-
-/* #include <stdio.h>
-int main()
-{
-    char *a = "122345";
-    int count;
-    count = ft_strlen(a);
-    printf("Number of characters: %d\n", count);
-    return (0);
-}  */
