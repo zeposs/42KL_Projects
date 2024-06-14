@@ -10,60 +10,113 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h> // for optional testing (remove in final code)
-#include <stdlib.h>
-#include <string.h> // for strndup
+#include "libft.h"
 
-char	*ft_strcpy(char *dest, const char *src)
+static	void save_space(size_t *i, int *j, int *word_len)
 {
-	while (*src)
-	{
-		*dest++ = *src++;
-	}
-	*dest = '\0';
-	return (dest);
+	*i = 0;
+	*j = 0;
+	*word_len = -1;
 }
 
-char	**ft_split(char const *s, char c)
+static int	word_count(const char *s, char c)
 {
-	size_t	word_count;
-	char	**split_words;
-	int		i;
+	int	num;
+	int	i;
 
+	num = 0;
 	i = 0;
-	if (s == NULL)
-	{
-		return (NULL);
-	}
-	word_count = ft_count_words(s, c);
-	split_words = malloc(sizeof(char *) * (word_count + 1));
-	if (split_words == NULL)
-	{
-		return (NULL);
-	}
-	i = 0, start = 0;
+
 	while (*s)
 	{
-		if (*s != c)
+		if (*s != c && i  == 0)
 		{
-			if (!start)
-				start = 1;
+			i = 1;
+			num++;
 		}
-		else if (start)
+		else if (*s == c)
 		{
-			split_words[i++] = ft_strcpy(malloc(start + 1), s - start);
-			if (!split_words[i - 1])
-				return (NULL);
-			start = 0;
+			i = 0;
 		}
 		s++;
+		
 	}
-	if (start)
+	return (num);
+}
+
+static char	*wordindex(const char *s, int start, int end)
+{
+	char *word;
+	int i;
+
+	i = 0;
+	word = malloc((end - start + 1) * sizeof(char));
+	if (!word)
+		return (NULL);
+	while (start < end)
 	{
-		split_words[i++] = ft_strcpy(malloc(strlen(s) - start + 1), s - start);
-		if (!split_words[i - 1])
-			return (NULL);
+		word[i] = s[start];
+		i++;
+		start++;
 	}
-	split_words[i] = NULL;
-	return (split_words);
+	word[i] = '\0';
+	return (word);
+}
+
+static void	*ft_free(char **s, int count)
+{
+	int	i;
+
+	i = -1;
+	while (++i < count)
+		free(s[i]);
+	free(s);
+	return (NULL);
+}
+
+char	**ft_split(const char *s, char c)
+{
+	char	**res;
+	size_t	i;
+	int	j;
+	int	word_len;
+
+	save_space(&i, &j, &word_len);
+	res = ft_calloc((word_count(s, c) + 1), sizeof(char *));
+	if (!res)
+		return (NULL);
+	while (i <= ft_strlen(s))
+	{
+		if (s[i] != c && word_len < 0)
+			word_len = i;
+		else if ((s[i] == c || i == ft_strlen(s)) && word_len >= 0)
+		{
+			res[j] = wordindex(s, word_len, i);
+			if (!res[j])
+				return (ft_free(res, j));
+			word_len = -1;
+			j++;
+		}
+		i++;
+	}
+	return (res);
+}
+
+#include <stdio.h>
+int main()
+{
+    char **words;
+    int i;
+
+    words = ft_split("hello world, this is a test",' ');
+    if (!words)
+        return 1;
+    i = 0;
+    while (words[i])
+    {
+        printf("Word %d: %s\n", i, words[i]);
+        i++;
+    }
+    ft_free(words, i);
+    return 0;
 }
