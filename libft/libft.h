@@ -6,12 +6,12 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 20:01:24 by zernest           #+#    #+#             */
-/*   Updated: 2024/06/15 20:01:39 by zernest          ###   ########.fr       */
+/*   Updated: 2024/06/18 19:44:35 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_FILE
-# define HEADER_FILE
+#ifndef LIBFT_H
+# define LIBFT_H
 
 # include <stddef.h>
 # include <stdlib.h>

@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 17:14:10 by zernest           #+#    #+#             */
-/*   Updated: 2024/06/15 19:29:33 by zernest          ###   ########.fr       */
+/*   Updated: 2024/06/18 19:39:17 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	i = -1;
 	if (start >= ft_strlen(s) || len == 0)
 	{
-		return ((char *)malloc(1));
+		return (ft_strdup(""));
 	}
 	new_len = 0;
 	if (start >= ft_strlen(s) || len == 0)

@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 20:24:44 by zernest           #+#    #+#             */
-/*   Updated: 2024/06/13 17:29:16 by zernest          ###   ########.fr       */
+/*   Updated: 2024/06/18 19:47:44 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		if (*char_s == c)
+		if (*char_s == (char)c)
 		{
 			return ((void *)char_s);
 		}

@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 16:20:22 by zernest           #+#    #+#             */
-/*   Updated: 2024/06/08 16:33:56 by zernest          ###   ########.fr       */
+/*   Updated: 2024/06/18 19:28:47 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_atoi(const char *str)
 	num = 0;
 	while (str[i] == 32 || (str[i] > 8 && str[i] < 14))
 		i++;
-	while (str[i] == 43 || str[i] == 45)
+	if (str[i] == 43 || str[i] == 45)
 	{
 		if (str[i] == 45)
 			countneg++;

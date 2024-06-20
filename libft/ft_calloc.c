@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:26:45 by zernest           #+#    #+#             */
-/*   Updated: 2024/06/13 18:52:18 by zernest          ###   ########.fr       */
+/*   Updated: 2024/06/18 18:54:57 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	size_t	size_product;
 	void	*ptr;
 
-	if (nmemb <= 0 || size <= 0)
-	{
-		nmemb = 0;
-		size = 0;
-	}
+	if (size != 0 && nmemb > 4294967295 / size)
+		return (NULL);
 	size_product = nmemb * size;
 	ptr = malloc(size_product);
 	if (ptr == NULL)
@@ -57,7 +54,8 @@ int	main(void)
 			}
 			i++;
 		}
-		printf("Memory allocated and initialized successfully for 5 integers.\n");
+		printf("Memory allocated and initialized 
+		successfully for 5 integers.\n");
 	return (0);
     }
 } */
