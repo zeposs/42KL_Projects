@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.c                                           :+:      :+:    :+:   */
+/*   printf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/25 21:35:58 by zernest           #+#    #+#             */
-/*   Updated: 2024/06/29 20:19:03 by zernest          ###   ########.fr       */
+/*   Created: 2024/06/29 19:24:36 by zernest           #+#    #+#             */
+/*   Updated: 2024/06/29 20:22:00 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#ifndef PRINTF_H 
+# define PRINTF_H
 
-int	ft_printf(const char *format, ...)
-{
-	va_list	args;
-	int		i;
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdarg.h>
 
-	i = 0;
-	va_start (args, format);
-	while (format[i])
-	{
-		if (format[i] == '%')
-		{
-			typelist(args, format[++i]);
-			i++;
-		}
-		else
-		{	
-		ft_putchar(format[i]);
-		i++;
-		}
-	}
-	return (1);
-}
+int	ft_printf(const char *format, ...);
+int	typelist(va_list args, char c);
+int	ft_strlen(char const *str);
+int	ft_putchar(int c);
+int	ft_putstr(char *s);
+int	ft_putnbr(int n);
 
-int	main(void)
-{
-	ft_printf("hello %d", 1232);
-}
+#endif

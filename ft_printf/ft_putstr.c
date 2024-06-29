@@ -1,41 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.c                                           :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/25 21:35:58 by zernest           #+#    #+#             */
-/*   Updated: 2024/06/29 20:19:03 by zernest          ###   ########.fr       */
+/*   Created: 2024/06/13 15:19:19 by zernest           #+#    #+#             */
+/*   Updated: 2024/06/29 20:17:58 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_putstr(char *s)
 {
-	va_list	args;
-	int		i;
+	int	i;
 
+	if (!s)
+		return (0);
 	i = 0;
-	va_start (args, format);
-	while (format[i])
+	while (s[i] != '\0')
 	{
-		if (format[i] == '%')
-		{
-			typelist(args, format[++i]);
-			i++;
-		}
-		else
-		{	
-		ft_putchar(format[i]);
+		write(1, &s[i], 1);
 		i++;
-		}
 	}
-	return (1);
-}
-
-int	main(void)
-{
-	ft_printf("hello %d", 1232);
+	return (i);
 }

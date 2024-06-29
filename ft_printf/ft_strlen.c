@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.c                                           :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/25 21:35:58 by zernest           #+#    #+#             */
-/*   Updated: 2024/06/29 20:19:03 by zernest          ###   ########.fr       */
+/*   Created: 2024/04/30 15:38:38 by zernest           #+#    #+#             */
+/*   Updated: 2024/06/29 20:21:45 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_strlen(char const *str)
 {
-	va_list	args;
-	int		i;
+	size_t	i;
 
 	i = 0;
-	va_start (args, format);
-	while (format[i])
+	while (str[i] != '\0')
 	{
-		if (format[i] == '%')
-		{
-			typelist(args, format[++i]);
-			i++;
-		}
-		else
-		{	
-		ft_putchar(format[i]);
 		i++;
-		}
 	}
-	return (1);
+	return (i);
 }
 
-int	main(void)
+/* #include <stdio.h>
+int main()
 {
-	ft_printf("hello %d", 1232);
-}
+    char *a = "122345";
+    int count;
+    count = ft_strlen(a);
+    printf("Number of characters: %d\n", count);
+    return (0);
+}  */

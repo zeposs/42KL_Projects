@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.c                                           :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/25 21:35:58 by zernest           #+#    #+#             */
-/*   Updated: 2024/06/29 20:19:03 by zernest          ###   ########.fr       */
+/*   Created: 2024/06/13 15:33:22 by zernest           #+#    #+#             */
+/*   Updated: 2024/06/29 20:19:29 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_putnbr(int n)
 {
-	va_list	args;
-	int		i;
+	long	no;
 
-	i = 0;
-	va_start (args, format);
-	while (format[i])
+	no = n;
+	if (no < 0)
 	{
-		if (format[i] == '%')
-		{
-			typelist(args, format[++i]);
-			i++;
-		}
-		else
-		{	
-		ft_putchar(format[i]);
-		i++;
-		}
+		no = no * -1;
+		ft_putchar('-');
 	}
-	return (1);
-}
-
-int	main(void)
-{
-	ft_printf("hello %d", 1232);
+	if (no >= 10)
+	{
+		ft_putnbr(no / 10);
+	}
+	ft_putchar(no % 10 + '0');
+	return (0);
 }
