@@ -22,5 +22,11 @@ int	typelist(va_list args, char c)
 		ft_putchar('%');
 	else if (c == 'i' || c == 'd')
 		ft_putnbr(va_arg(args, int));
+	else if (c == 'p')
+		ft_ptr(va_arg(args, void *));
+	else if (c == 'x')
+		ft_lowerhex(va_arg(args, unsigned int));
+	else if (c == 'X')
+		ft_upperhex(va_arg(args, unsigned int));
 	return (0);
 }

@@ -16,6 +16,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <stdint.h>
 
 int	ft_printf(const char *format, ...);
 int	typelist(va_list args, char c);
@@ -23,5 +24,8 @@ int	ft_strlen(char const *str);
 int	ft_putchar(int c);
 int	ft_putstr(char *s);
 int	ft_putnbr(int n);
+int	ft_ptr(void *ptr);
+int	ft_lowerhex(unsigned int n);
+int	ft_upperhex(unsigned int n);
 
 #endif
