@@ -1,4 +1,16 @@
-#include "printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_upperhex.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/02 19:51:03 by zernest           #+#    #+#             */
+/*   Updated: 2024/07/02 21:33:20 by zernest          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
 
 static void	ft_printinghex(uintptr_t ptr, char *base)
 {
@@ -14,7 +26,7 @@ int	ft_upperhex(unsigned int n)
 
 	count = 0;
 	countn = n;
-	if	(!n)
+	if (!n)
 	{
 		ft_putchar('0');
 		return (1);

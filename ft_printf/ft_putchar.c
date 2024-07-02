@@ -6,11 +6,11 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 19:24:01 by zernest           #+#    #+#             */
-/*   Updated: 2024/06/29 19:58:35 by zernest          ###   ########.fr       */
+/*   Updated: 2024/07/02 21:32:57 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 int	ft_putchar(int c)
 {

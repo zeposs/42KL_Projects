@@ -1,4 +1,16 @@
-#include "printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_ptr.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/02 19:50:04 by zernest           #+#    #+#             */
+/*   Updated: 2024/07/02 21:32:54 by zernest          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
 
 static void	ft_printinghex(uintptr_t ptr, char *base)
 {
@@ -18,7 +30,7 @@ int	ft_ptr(void *ptr)
 	if (!ptr)
 	{
 		ft_putchar('0');
-		return (3)
+		return (3);
 	}
 	else
 	{

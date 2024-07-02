@@ -6,18 +6,21 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:19:19 by zernest           #+#    #+#             */
-/*   Updated: 2024/06/29 20:17:58 by zernest          ###   ########.fr       */
+/*   Updated: 2024/07/02 22:23:35 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 int	ft_putstr(char *s)
 {
 	int	i;
 
 	if (!s)
-		return (0);
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	i = 0;
 	while (s[i] != '\0')
 	{
