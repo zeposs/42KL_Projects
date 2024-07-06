@@ -24,7 +24,9 @@ int	ft_printf(const char *format, ...)
 	while (format[i])
 	{
 		if (format[i] != '%')
+		{
 			len += ft_putchar(format[i]);
+		}
 		if (format[i] == '%')
 		{
 			len += typelist(args, format[i + 1]);
@@ -36,11 +38,18 @@ int	ft_printf(const char *format, ...)
 	return (len);
 }
 
-/* #include <stdio.h>
+#include <stdio.h>
 int	main(void)
 {
-	ft_printf("%c ", '0' + 256);
+	int	fake;
+	int	real;
+
+	fake = ft_printf(" %p %p ", 0, 0);
 	write(1, "%%", 1);
 	write(1, "\n", 1);
-	printf("%c ", '0' + 256);
-} */
+	real = printf(" %p %p ", 0, 0);
+	write(1, "\n", 1);
+	printf("fake value: %d", fake);
+	write(1, "\n", 1);
+	printf("real value: %d", real);
+}
