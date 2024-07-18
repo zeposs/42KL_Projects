@@ -22,4 +22,7 @@
 
 char	*get_next_line(int fd);
 
+// utils
+int	ft_strlen(char const *str);
+
 #endif
