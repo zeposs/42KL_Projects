@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 16:20:50 by zernest           #+#    #+#             */
-/*   Updated: 2024/07/28 19:58:44 by zernest          ###   ########.fr       */
+/*   Updated: 2024/07/28 19:58:54 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,27 +101,27 @@ int	main(void)
 	char	*line;
 	int		i;
 	int		fd1;
-	// int		fd2;
-	// int		fd3;
-	fd1 = open("/Users/zernest/code/get_next_line/tests/test.txt", O_RDONLY);
-	// fd2 = open("tests/test2.txt", O_RDONLY);
-	// fd3 = open("tests/test3.txt", O_RDONLY);
+	int		fd2;
+	int		fd3;
+	fd1 = open("tests/test.txt", O_RDONLY);
+	fd2 = open("tests/test2.txt", O_RDONLY);
+	fd3 = open("tests/test3.txt", O_RDONLY);
 	i = 1;
 	while (i < 7)
 	{
 		line = get_next_line(fd1);
 		printf("line [%02d]: %s", i, line);
 		free(line);
-		// line = get_next_line(fd2);
-		// printf("line [%02d]: %s", i, line);
-		// free(line);
-		// line = get_next_line(fd3);
-		// printf("line [%02d]: %s", i, line);
-		// free(line);
+		line = get_next_line(fd2);
+		printf("line [%02d]: %s", i, line);
+		free(line);
+		line = get_next_line(fd3);
+		printf("line [%02d]: %s", i, line);
+		free(line);
 		i++;
 	}
 	close(fd1);
-	// close(fd2);
-	// close(fd3);
+	close(fd2);
+	close(fd3);
 	return (0);
 } */
