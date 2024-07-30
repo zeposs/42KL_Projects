@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 16:20:50 by zernest           #+#    #+#             */
-/*   Updated: 2024/07/28 19:58:54 by zernest          ###   ########.fr       */
+/*   Updated: 2024/07/30 17:19:15 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,15 @@ char	*process_stash(char *stash)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*stash;
+	static char	*stash[1024];
 
 	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, NULL, 0) < 0)
 		return (NULL);
-	if (!stash)
-		stash = ft_strdup("");
-	stash = ft_readfile(fd, stash);
-	line = get_line(stash);
-	stash = process_stash(stash);
+	if (!stash[fd])
+		stash[fd] = ft_strdup("");
+	stash[fd] = ft_readfile(fd, stash[fd]);
+	line = get_line(stash[fd]);
+	stash[fd] = process_stash(stash[fd]);
 	return (line);
 }
 
