@@ -6,13 +6,13 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 17:16:54 by zernest           #+#    #+#             */
-/*   Updated: 2024/09/14 20:07:47 by zernest          ###   ########.fr       */
+/*   Updated: 2024/09/20 22:11:37 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char *get_path(char **env, char *cmd)
+char	*get_path(char **env, char *cmd)
 {
 	char	**available_paths;
 	char	*current_path;
@@ -45,7 +45,7 @@ void	execute(char *str, char **env)
 	cmd = ft_split(str, ' ');
 	path = get_path(env, cmd[0]);
 	if (execve(path, cmd, env) == -1)
-		perror("Error");
+		perror("Error with execution");
 }
 
 void	child(int *pipe_fd, char **av, char **env)
@@ -58,7 +58,22 @@ void	child(int *pipe_fd, char **av, char **env)
 	close(pipe_fd[0]);
 	dup2(infile, 0);
 	dup2(pipe_fd[1], 1);
+	close(pipe_fd[1]);
 	execute(av[2], env);
+}
+
+void	parent(int *pipe_fd, char **av, char **env)
+{
+	int	outfile;
+
+	outfile = open(av[4], O_WRONLY | O_TRUNC | O_CREAT, 0777);
+	if (outfile == -1)
+		perror("Error in parent function");
+	close(pipe_fd[1]);
+	dup2(outfile, 1);
+	dup2(pipe_fd[0], 0);
+	close(pipe_fd[0]);
+	execute(av[3], env);
 }
 
 int	main(int ac, char **av, char **env)
@@ -66,24 +81,23 @@ int	main(int ac, char **av, char **env)
 	int		pipe_fd[2];
 	pid_t	pid;
 
-	if (pipe(pipe_fd) == -1)
+	if (ac != 5 || pipe(pipe_fd) == -1)
 	{
-		perror("Error");
+		perror("Error somewhere in main");
 		return (1);
 	}
-
 	pid = fork();
 	if (pid == -1)
 	{
-		perror("Error");
+		perror("Error with forking");
 		return (1);
 	}
 	if (pid == 0)
-	{
 		child(pipe_fd, av, env);
-	}
 	else
 	{
 		waitpid(pid, NULL, 0);
+		parent(pipe_fd, av, env);
 	}
+	return (0);
 }
