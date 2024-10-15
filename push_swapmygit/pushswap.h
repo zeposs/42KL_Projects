@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:01:38 by zernest           #+#    #+#             */
-/*   Updated: 2024/10/14 23:09:39 by zernest          ###   ########.fr       */
+/*   Updated: 2024/10/15 22:02:10 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,18 @@ typedef struct s_stack
 
 void	exit_error_str(char *str);
 void	ft_putstr_err(char *s);
+void	ft_free(t_stack **lst);
+void	ft_freestr(char **lst);
 
 /* LIST UTILITIES */
 
 t_stack	*ft_lstlast(t_stack *lst);
+
+/* STUFF FOR HANDLING THE STACK */
+
+t_stack	*ft_stack_new(int content);
+void	ft_add_back(t_stack **stack, t_stack **stack_new);
+void	convert_to_int(char **av, t_stack **stack);
 
 /* BASIC OPERATIONS */
 
@@ -44,5 +52,19 @@ void	ft_rr1(t_stack **stack, char stack_letter, int j);
 void	ft_ss(t_stack **a, t_stack **b, int j);	
 void	ft_rr(t_stack **a, t_stack **b, int j);
 void	ft_rrr(t_stack **a, t_stack **b, int j);
+
+/* FUNCTIONS FOR CHECKING */
+
+void	alpha_check(char **av);
+int		issign(int c);
+int		isspace(int c);
+int		check_error(char **av, int i, int j);
+int		check_args(char **argv);
+int		ft_checkdup(t_stack *a);
+int		ft_checksorted(t_stack *a);
+
+/* ALGORITHM */
+
+
 
 #endif

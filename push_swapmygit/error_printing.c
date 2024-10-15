@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:59:45 by zernest           #+#    #+#             */
-/*   Updated: 2024/10/11 22:04:11 by zernest          ###   ########.fr       */
+/*   Updated: 2024/10/15 21:58:15 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,34 @@ void	ft_putstr_err(char *s)
 		len++;
 	}
 	write(2, s, len);
+}
+
+void	ft_free(t_stack **lst)
+{
+	t_stack	*temp;
+
+	if (!lst)
+		return ;
+	while (*lst)
+	{
+		temp = (*lst)->next;
+		(*lst)->nbr = 0;
+		free(*lst);
+		*lst = temp;
+	}
+}
+
+void	ft_freestr(char **lst)
+{
+	char	*n1;
+
+	if (!lst)
+		return ;
+	while (*lst)
+	{
+		n1 = *lst;
+		lst++;
+		free(n1);
+	}
+	*lst = NULL;
 }

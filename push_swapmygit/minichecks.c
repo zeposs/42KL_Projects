@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lstutils.c                                         :+:      :+:    :+:   */
+/*   minichecks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/14 20:26:14 by zernest           #+#    #+#             */
-/*   Updated: 2024/10/15 21:34:17 by zernest          ###   ########.fr       */
+/*   Created: 2024/10/15 17:49:22 by zernest           #+#    #+#             */
+/*   Updated: 2024/10/15 17:49:52 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-t_stack	*ft_lstlast(t_stack *lst)
+int	issign(int c)
 {
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst -> next;
-	return (lst);
+	if (c == '+' || c == '-')
+		return (1);
+	return (0);
 }
 
+int	isspace(int c)
+{
+	if (c == ' ')
+		return (1);
+	return (0);
+}
