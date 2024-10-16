@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:01:38 by zernest           #+#    #+#             */
-/*   Updated: 2024/10/15 22:02:10 by zernest          ###   ########.fr       */
+/*   Updated: 2024/10/16 22:04:40 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,20 @@ void	ft_freestr(char **lst);
 /* LIST UTILITIES */
 
 t_stack	*ft_lstlast(t_stack *lst);
+int		ft_lstsize(t_stack *lst);
+int		ft_min(t_stack *stack);
+int		ft_max(t_stack *stack);
+int		ft_find_index(t_stack *stack, int n);
+int		ft_find_place_b(t_stack *stack_b, int nbr_push);
+int		ft_find_place_a(t_stack *stack_a, int nbr_push);
 
 /* STUFF FOR HANDLING THE STACK */
 
 t_stack	*ft_stack_new(int content);
 void	ft_add_back(t_stack **stack, t_stack **stack_new);
 void	convert_to_int(char **av, t_stack **stack);
+t_stack	*ft_parse(int ac, char **av);
+t_stack	*ft_parse_quoted(char **av);
 
 /* BASIC OPERATIONS */
 
@@ -65,6 +73,6 @@ int		ft_checksorted(t_stack *a);
 
 /* ALGORITHM */
 
-
+int		ft_case_rarb(t_stack *a, t_stack *b, int c);
 
 #endif

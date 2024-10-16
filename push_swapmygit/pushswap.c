@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:01:38 by zernest           #+#    #+#             */
-/*   Updated: 2024/10/15 22:03:54 by zernest          ###   ########.fr       */
+/*   Updated: 2024/10/16 17:48:13 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	main(int ac, char **av)
 		ft_free(&a);
 		exit_error_str("Error: There might be a duplicate");
 	}
-	// if (!ft_checksorted(a))
-	// 	ft_sort
+	if (!ft_checksorted(a))
+		ft_sort
 	ft_free(&a);
 	return (0);
 }
