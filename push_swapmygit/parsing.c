@@ -31,7 +31,7 @@ t_stack	*ft_parse(int ac, char **av)
 
 t_stack	*ft_parse_quoted(char **av)
 {
-	stack_t	*stack_a;
+	t_stack	*stack_a;
 	char	**temp;
 
 	stack_a = NULL;

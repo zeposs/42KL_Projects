@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:01:38 by zernest           #+#    #+#             */
-/*   Updated: 2024/10/16 22:04:40 by zernest          ###   ########.fr       */
+/*   Updated: 2024/10/18 06:03:57 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ int		ft_checksorted(t_stack *a);
 
 /* ALGORITHM */
 
-int		ft_case_rarb(t_stack *a, t_stack *b, int c);
+int	ft_case_rarb(t_stack *a, t_stack *b, int c, int is_a);
+int	ft_case_rrarrb(t_stack *a, t_stack *b, int c, int is_a);
+int	ft_case_rrarb(t_stack *a, t_stack *b, int c, int is_a);
+int	ft_case_rarrb(t_stack *a, t_stack *b, int c, int is_a);
+int ft_rotate_type_ba(t_stack *a, t_stack *b);
+int ft_rotate_type_ab(t_stack *a, t_stack *b);
 
 #endif
