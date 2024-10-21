@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:01:38 by zernest           #+#    #+#             */
-/*   Updated: 2024/10/16 17:48:13 by zernest          ###   ########.fr       */
+/*   Updated: 2024/10/21 20:46:12 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int ac, char **av)
 		exit_error_str("Error: There might be a duplicate");
 	}
 	if (!ft_checksorted(a))
-		ft_sort
+		ft_sort(&a);
 	ft_free(&a);
 	return (0);
 }
@@ -39,7 +39,7 @@ t_stack	*ft_process(int ac, char **av)
 	if (ac < 2)
 		exit_error_str("Error: Less than 2 arguements");
 	if (ac == 2)
-		a = ft_sub_process;
+		a = ft_sub_process(av);
 	else
 	{
 		while (i < ac)

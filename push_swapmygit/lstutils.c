@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 20:26:14 by zernest           #+#    #+#             */
-/*   Updated: 2024/10/16 20:53:21 by zernest          ###   ########.fr       */
+/*   Updated: 2024/10/21 20:42:55 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_min(t_stack *stack)
 	{
 		if (stack->nbr < i)
 			i = stack->nbr;
-		stack = stack->nbr;
+		stack = stack->next;
 	}
 	return (i);
 }
@@ -57,7 +57,7 @@ int	ft_max(t_stack *stack)
 	{
 		if (stack->nbr > i)
 			i = stack->nbr;
-		stack = stack->nbr;
+		stack = stack->next;
 	}
 	return (i);
 }

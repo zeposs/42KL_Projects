@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:29:37 by zernest           #+#    #+#             */
-/*   Updated: 2024/10/15 21:51:51 by zernest          ###   ########.fr       */
+/*   Updated: 2024/10/21 20:51:09 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_stack	*ft_stack_new(int content)
 	return (new);
 }
 
-void	ft_add_back(t_stack **stack, t_stack **stack_new)
+void	ft_add_back(t_stack **stack, t_stack *stack_new)
 {
 	if (!stack)
 		return ;

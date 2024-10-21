@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:01:38 by zernest           #+#    #+#             */
-/*   Updated: 2024/10/18 19:56:41 by zernest          ###   ########.fr       */
+/*   Updated: 2024/10/21 21:16:22 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int		ft_find_place_a(t_stack *stack_a, int nbr_push);
 /* STUFF FOR HANDLING THE STACK */
 
 t_stack	*ft_stack_new(int content);
-void	ft_add_back(t_stack **stack, t_stack **stack_new);
+void	ft_add_back(t_stack **stack, t_stack *stack_new);
 void	convert_to_int(char **av, t_stack **stack);
-t_stack	*ft_parse(int ac, char **av);
+t_stack	*arse(int ac, char **av);
 t_stack	*ft_parse_quoted(char **av);
 
 /* BASIC OPERATIONS */
@@ -84,5 +84,11 @@ int		ft_apply_rrarrb(t_stack **a, t_stack **b, int c, int is_a);
 int		ft_apply_rrarb(t_stack **a, t_stack **b, int c, int is_a);
 int		ft_apply_rarrb(t_stack **a, t_stack **b, int c, int is_a);
 void	ft_sort_three(t_stack **a);
+void	ft_sort_b_till_3(t_stack **a, t_stack **b);
+t_stack	*ft_sort_b(t_stack **a);
+t_stack	**ft_sort_a(t_stack **a, t_stack **b);
+void	ft_sort(t_stack **a);
+t_stack	*ft_process(int ac, char **av);
+t_stack	*ft_sub_process(char **av);
 
 #endif

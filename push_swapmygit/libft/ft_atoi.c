@@ -6,13 +6,14 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 16:20:22 by zernest           #+#    #+#             */
-/*   Updated: 2024/10/14 17:55:35 by zernest          ###   ########.fr       */
+/*   Updated: 2024/10/21 21:15:11 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ctype.h>
 #include <limits.h>
 #include <unistd.h>
+#include "libft.h"
 
 int	ft_atoi(const char *str)
 {

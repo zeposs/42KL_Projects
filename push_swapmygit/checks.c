@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:25:28 by zernest           #+#    #+#             */
-/*   Updated: 2024/10/15 21:01:01 by zernest          ###   ########.fr       */
+/*   Updated: 2024/10/21 20:41:39 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ int	check_error(char **av, int i, int j)
 			if (issign(av[i][j]))
 			{
 				j++;
-				if (!isdigit(av[i][j]))
+				if (!ft_isdigit(av[i][j]))
 					return (0);
 			}
-			else if (isdigit(av[i][j]))
+			else if (ft_isdigit(av[i][j]))
 			{
 				j++;
 				if (av[i][j] == '\0')
 					break ;
-				if (!isdigit(av[i][j]) && !isspace(av[i][j]))
+				if (!ft_isdigit(av[i][j]) && !isspace(av[i][j]))
 					return (0);
 			}
 			j++;
