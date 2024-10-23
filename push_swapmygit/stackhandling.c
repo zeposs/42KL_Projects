@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:29:37 by zernest           #+#    #+#             */
-/*   Updated: 2024/10/21 20:51:09 by zernest          ###   ########.fr       */
+/*   Updated: 2024/10/23 16:06:49 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_add_back(t_stack **stack, t_stack *stack_new)
 	if (!*stack)
 		*stack = stack_new;
 	else
-		ft_lstlast(*stack)->next = stack_new;
+		(ft_lstlast(*stack))->next = stack_new;
 }
 
 void	convert_to_int(char **av, t_stack **stack)

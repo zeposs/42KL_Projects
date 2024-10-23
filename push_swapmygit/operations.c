@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 20:22:31 by zernest           #+#    #+#             */
-/*   Updated: 2024/10/14 23:09:36 by zernest          ###   ########.fr       */
+/*   Updated: 2024/10/23 15:42:31 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_r1(t_stack **stack, char stack_letter, int j)
 	temp->next = NULL;
 	if (j == 0)
 	{
+		// write(1, "1rasijo\n", 8);
 		write(1, "r", 1);
 		write(1, &stack_letter, 1);
 		write(1, "\n", 1);
@@ -93,7 +94,8 @@ void	ft_rr1(t_stack **stack, char stack_letter, int j)
 	temp->next = NULL;
 	if (j == 0)
 	{
-		write(1, "rr", 1);
+		// write(1, "2rasijo\n", 8);
+		write(1, "rr", 2);
 		write(1, &stack_letter, 1);
 		write(1, "\n", 1);
 	}
@@ -101,8 +103,8 @@ void	ft_rr1(t_stack **stack, char stack_letter, int j)
 
 void	ft_ss(t_stack **a, t_stack **b, int j)
 {
-	ft_s1(a, 'a', 0);
-	ft_s1(b, 'b', 0);
+	ft_s1(a, 'a', 1);
+	ft_s1(b, 'b', 1);
 	if (j == 0)
 		write(1, "ss\n", 3);
 }

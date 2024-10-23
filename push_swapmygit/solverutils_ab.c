@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 21:46:46 by zernest           #+#    #+#             */
-/*   Updated: 2024/10/18 16:14:52 by zernest          ###   ########.fr       */
+/*   Updated: 2024/10/23 16:01:30 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ int	ft_case_rrarb(t_stack *a, t_stack *b, int c, int is_a)
 	i = 0;
 	if (is_a)
 	{
-		if (ft_find_index(b, c))
-			i = ft_lstsize(b) - ft_find_index(b, c);
-		i = ft_find_place_a(a, c) + i;
+		if (ft_find_place_a(a, c))
+			i = ft_lstsize(a) - ft_find_place_a(a, c);
+		i = ft_find_index(b, c) + i;
 	}
 	else
 	{
@@ -80,9 +80,9 @@ int	ft_case_rarrb(t_stack *a, t_stack *b, int c, int is_a)
 	i = 0;
 	if (is_a)
 	{
-		if (ft_find_place_a(a, c))
-			i = ft_lstsize(a) - ft_find_place_a(a, c);
-		i = ft_find_index(b, c) + i;
+		if (ft_find_index(b, c))
+			i = ft_lstsize(b) - ft_find_index(b, c);
+		i = ft_find_place_a(a, c) + i;
 	}
 	else
 	{
