@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 17:31:14 by zernest           #+#    #+#             */
-/*   Updated: 2024/10/31 18:25:42 by zernest          ###   ########.fr       */
+/*   Updated: 2024/11/01 17:48:48 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 
 int	main(void)
 {
-	void	*mlx;
-	void	*mlx_win;
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Girls Und Panzer");
-	mlx_loop(mlx);
+	t_data data;
+
+	data.mlx_ptr = mlx_init();
+	data.win_ptr = mlx_new_window(data.mlx_ptr, 1920, 1080, "Girls Und Panzer");
+	data.texture[0] = mlx_xpm_file_to_image(data.mlx_ptr, /assets/mako.xpm, 1920, 1080);
+	mlx_loop(data.mlx_ptr);
+
+//	player =  mlx_xpm_file_to_image
 }
