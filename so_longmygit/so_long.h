@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 17:22:55 by zernest           #+#    #+#             */
-/*   Updated: 2024/11/01 17:31:07 by zernest          ###   ########.fr       */
+/*   Updated: 2024/11/11 19:26:01 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 # include <mlx.h>
 # include <stdio.h>
 # include "libft/libft.h"
+# include "get_next_line/get_next_line.h"
 # include <stdlib.h>
+# include <fcntl.h>
 
 # define UP 65362
 # define DOWN 65364
@@ -35,6 +37,12 @@ typedef struct s_data
 	void		*textures[5]; // MLX image pointers (on the stack)
 	//t_map		*map; // Map pointer (contains map details - preferably kept on the stack)
 }	t_data;
+
+typedef struct s_game
+{
+	int		player_pos_x;
+	int		player_pos_y;
+}	t_game;
 
 
 
