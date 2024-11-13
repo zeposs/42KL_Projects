@@ -1,35 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   error_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 15:38:38 by zernest           #+#    #+#             */
-/*   Updated: 2024/06/11 18:43:00 by zernest          ###   ########.fr       */
+/*   Created: 2024/11/13 20:38:21 by zernest           #+#    #+#             */
+/*   Updated: 2024/11/13 20:47:55 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "so_long.h"
 
-int	ft_strlen(char const *str)
+void	exit_perr_string(t_mlx **mlx, char *msg)
 {
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
+	perror(msg);
+	// function to free everything here
+	exit();
 }
 
-/* #include <stdio.h>
-int main()
+void	ft_putstr_err(char *s)
 {
-    char *a = "122345";
-    int count;
-    count = ft_strlen(a);
-    printf("Number of characters: %d\n", count);
-    return (0);
-}  */
+	size_t	len;
+
+	if (!s)
+		return ;
+	len = 0;
+	while (s[len] != '\0')
+	{
+		len++;
+	}
+	write(2, s, len);
+}
+
+void	exit_err_str(char *str)
+{
+	ft_putstr_err(str);
+	write(2, "\n", 1);
+	// function to free everything here too
+	exit(1);
+}

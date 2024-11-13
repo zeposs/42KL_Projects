@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printing_map.c                                     :+:      :+:    :+:   */
+/*   map_checks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 19:23:31 by zernest           #+#    #+#             */
-/*   Updated: 2024/11/11 21:23:23 by zernest          ###   ########.fr       */
+/*   Created: 2024/11/13 21:07:35 by zernest           #+#    #+#             */
+/*   Updated: 2024/11/13 21:14:39 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so.long.h"
 
-#define MAX_MAP_HEIGHT 100
-#define MAX_MAP_WIDTH 100
-
-void	ber_to_array(char *map)
+int	calc_col(char **map, int size_y)
 {
-	char	map[MAX_MAP_HEIGHT][MAX_MAP_WIDTH];
-	char	*line;
-	int		i;
+	int		row;
+	size_t	fix_len;
 
-	i = 0;
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		
-	}
+	row = 0;
+	fix_len = ft_strlen(map[0]);
+	while (++row < size_y)
+	
 }
