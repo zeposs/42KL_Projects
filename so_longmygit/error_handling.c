@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 20:38:21 by zernest           #+#    #+#             */
-/*   Updated: 2024/11/13 20:47:55 by zernest          ###   ########.fr       */
+/*   Updated: 2024/11/15 18:57:46 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	exit_perr_string(t_mlx **mlx, char *msg)
 {
 	perror(msg);
 	// function to free everything here
-	exit();
+	exit(1);
 }
 
 void	ft_putstr_err(char *s)

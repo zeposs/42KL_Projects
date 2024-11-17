@@ -6,9 +6,11 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 20:32:30 by zernest           #+#    #+#             */
-/*   Updated: 2024/11/13 21:06:45 by zernest          ###   ########.fr       */
+/*   Updated: 2024/11/18 04:11:12 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "so_long.h"
 
 void	init_sprites(t_mlx **mlx)
 {
@@ -32,12 +34,24 @@ void	load_sprites(t_mlx *mlx, t_sprites **sprites)
 			&width, height);
 }
 
-void	init_map(t_mlx *mlx, char *map)
+void	init_map(t_mlx **mlx, char *map)
 {
-	(*mlx)->mlx+ptr = mlx_init();
+	(*mlx)->mlx_ptr = mlx_init();
 	if ((*mlx)->mlx_ptr == NULL)
-		err_and_exit(mlx, "Failed to initialize map");
-	(*mlx)->win_y = calc
+		exit_perr_string(mlx, "Failed to initialize map");
+	(*mlx)->win_y = calc_row(map);
+	if ((*mlx)->win_y < 1)
+		exit_perr_string(mlx, "Failed to initialize map");
+}
+
+void	map_data(t_mlx **mlx, char *map, int size_y)
+{
+	t_map	*data;
+
+	data = malloc(sizeof(t_map));
+	if (data == NULL)
+		exit_err_string(mlx, "Failed to allocate memory for map data");
+	
 }
 
 char	**read_map(char *map, int size_y)

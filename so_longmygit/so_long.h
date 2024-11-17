@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 17:22:55 by zernest           #+#    #+#             */
-/*   Updated: 2024/11/13 21:05:21 by zernest          ###   ########.fr       */
+/*   Updated: 2024/11/18 04:08:58 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <mlx.h>
 # include <stdio.h>
 # include "libft/libft.h"
-// # include "get_next_line/get_next_line.h"
+# include "libft/gnl/get_next_line.h"
 # include <stdlib.h>
 # include <fcntl.h>
 
@@ -35,6 +35,9 @@
 # define P_PATH "assets/objects/mako.xpm"
 # define W_PATH "assets/objects/tree.xpm"
 # define BG_PATH "assets/objects/grass.xpm"
+# define EXIT_OPEN_PATH "assets/objects/minecraft_bed.xpm"
+# define EXIT_CLOSE_PATH "assets/objects/sun.xpm"
+# define C_PATH "assets/objects/tank.xpm"
 
 typedef struct s_mlx_data
 {
@@ -82,9 +85,13 @@ char	**read_map(char *map, int size_y);
 
 // ERROR HANDLING
 
-void	exit_perr_string(t_mlx **mlx, char *msg)
+void	exit_perr_string(t_mlx **mlx, char *msg);
 void	ft_putstr_err(char *s);
 void	exit_err_str(char *str);
 
+// MAP CHECKS
+
+int	calc_col(char **map, int size_y);
+int	calc_row(char *map);
 
 #endif
