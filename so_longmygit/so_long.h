@@ -6,21 +6,21 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 17:22:55 by zernest           #+#    #+#             */
-/*   Updated: 2024/11/18 04:08:58 by zernest          ###   ########.fr       */
+/*   Updated: 2024/11/28 05:54:21 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <mlx.h>
+//# include <mlx.h>
 # include <stdio.h>
 # include "libft/libft.h"
-# include "libft/gnl/get_next_line.h"
+//# include "libft/gnl/get_next_line.h"
 # include <stdlib.h>
 # include <fcntl.h>
 
-# define SIZE 50
+# define SIZE 48
 # define TILE_SIZE 48
 # define UP 65362
 # define DOWN 65364
@@ -78,9 +78,12 @@ void	render(t_mlx *mlx, void *img, int wid, int hgt);
 
 // INITIALIZING STUFF
 
+void    init_mlx(int ac, char **av, t_mlx **mlx);
 void	init_sprites(t_mlx **mlx);
 void	load_sprites(t_mlx *mlx, t_sprites **sprites);
 char	**read_map(char *map, int size_y);
+void	init_map(t_mlx **mlx, char *map);
+void	map_data(t_mlx **mlx, char *map, int size_y);
 
 
 // ERROR HANDLING
@@ -93,5 +96,9 @@ void	exit_err_str(char *str);
 
 int	calc_col(char **map, int size_y);
 int	calc_row(char *map);
+int	map_check(t_mlx **mlx, int size_y);
+int	is_surrounded(int row, int size_y, char *i);
+int	count_elements(t_map *map_data, int row, int size_y, char *i);
+int	check_element_count(t_map *map_data);
 
 #endif

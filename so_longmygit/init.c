@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 20:32:30 by zernest           #+#    #+#             */
-/*   Updated: 2024/11/18 04:11:12 by zernest          ###   ########.fr       */
+/*   Updated: 2024/11/28 05:58:47 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,25 @@ void	init_map(t_mlx **mlx, char *map)
 	(*mlx)->win_y = calc_row(map);
 	if ((*mlx)->win_y < 1)
 		exit_perr_string(mlx, "Failed to initialize map");
+	map_data(mlx, map, (*mlx)->win_y);
+	if (map_check(mlx, (*mlx)->win_y) == 0)
+		err_and_exit(mlx, "Your map is broken lol");
 }
 
-void	map_data(t_mlx **mlx, char *map, int size_y)
+void	map_data(t_mlx **mlx, char *map_location, int size_y)
 {
 	t_map	*data;
 
 	data = malloc(sizeof(t_map));
 	if (data == NULL)
 		exit_err_string(mlx, "Failed to allocate memory for map data");
-	
+	data->map = read_map(map_location, size_y);
+	if ((*mlx)->win_x <= 0)
+		exit_err_string(mlx, "win_x less or equal to 0");
+	data->player_count = 0;
+	data->item_count = 0;
+	data->exit_count = 0;
+	(*mlx)->map_data = data;
 }
 
 char	**read_map(char *map, int size_y)

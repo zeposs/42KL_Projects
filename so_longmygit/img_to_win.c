@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 15:56:47 by zernest           #+#    #+#             */
-/*   Updated: 2024/11/13 19:43:27 by zernest          ###   ########.fr       */
+/*   Updated: 2024/11/27 22:23:08 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ void	img_to_win(t_mlx *mlx, char	**map, int e_state)
 				render (mlx, mlx->sprites->floor, col, row);
 			else if (map[row][col] == 'C')
 				render (mlx, mlx->sprites->item, col, row);
-			else if (map[row][col] == 'E' && e_slate == 0)
+			else if (map[row][col] == 'E' && e_state == 0)
 				render (mlx, mlx->sprites->exit_close, col, row);
-			else if (map[row][col] == 'E' && e_slate == 1)
+			else if (map[row][col] == 'E' && e_state == 1)
 				render (mlx, mlx->sprites->exit_open, col, row);
 			else if (map[row][col] == 'P')
 				render (mlx, mlx->sprites->player, col, row);
-			else if (full_map[row][col] == 'X')
+			else if (map[row][col] == 'X')
 				render(mlx, mlx->sprites->enemy, col, row);
 		}
 	}
