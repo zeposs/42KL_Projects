@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 17:22:55 by zernest           #+#    #+#             */
-/*   Updated: 2024/11/28 05:54:21 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/05 00:07:35 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define AKEY 97
 # define SKEY 115
 # define DKEY 100
+# define EXIT_OPEN 2
+# define WIN 3
 
 # define P_PATH "assets/objects/mako.xpm"
 # define W_PATH "assets/objects/tree.xpm"
@@ -94,11 +96,17 @@ void	exit_err_str(char *str);
 
 // MAP CHECKS
 
-int	calc_col(char **map, int size_y);
-int	calc_row(char *map);
-int	map_check(t_mlx **mlx, int size_y);
-int	is_surrounded(int row, int size_y, char *i);
-int	count_elements(t_map *map_data, int row, int size_y, char *i);
-int	check_element_count(t_map *map_data);
+int		calc_col(char **map, int size_y);
+int		calc_row(char *map);
+int		map_check(t_mlx **mlx, int size_y);
+int		is_surrounded(int row, int size_y, char *i);
+int		count_elements(t_map *map_data, int row, int size_y, char *i);
+int		check_element_count(t_map *map_data);
+
+// MOVEMENT
+
+int		movement_check(char **map, int row, int col);
+int		remaining_c(char **map);
+void	find_player(t_mlx *mlx, int **player_loc);
 
 #endif
