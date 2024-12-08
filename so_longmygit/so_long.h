@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 17:22:55 by zernest           #+#    #+#             */
-/*   Updated: 2024/12/05 00:07:35 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/09 00:56:28 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int		map_check(t_mlx **mlx, int size_y);
 int		is_surrounded(int row, int size_y, char *i);
 int		count_elements(t_map *map_data, int row, int size_y, char *i);
 int		check_element_count(t_map *map_data);
+char    **dup_map(t_mlx *mlx);
 
 // MOVEMENT
 
