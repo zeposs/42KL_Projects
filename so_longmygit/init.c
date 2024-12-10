@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 20:32:30 by zernest           #+#    #+#             */
-/*   Updated: 2024/11/28 05:58:47 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/10 10:12:02 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_sprites(t_mlx **mlx)
 
 	sprites = malloc(sizeof(t_sprites));
 	if (sprites == NULL)
-		exit_err_string(mlx, "Failed to initialize sprites");
+		exit_err_str(mlx, "Failed to initialize sprites");
 	load_sprites(*mlx, &sprites);
 	(*mlx)->sprites = sprites;
 }
@@ -53,10 +53,10 @@ void	map_data(t_mlx **mlx, char *map_location, int size_y)
 
 	data = malloc(sizeof(t_map));
 	if (data == NULL)
-		exit_err_string(mlx, "Failed to allocate memory for map data");
+		exit_err_str(mlx, "Failed to allocate memory for map data");
 	data->map = read_map(map_location, size_y);
 	if ((*mlx)->win_x <= 0)
-		exit_err_string(mlx, "win_x less or equal to 0");
+		exit_err_str(mlx, "win_x less or equal to 0");
 	data->player_count = 0;
 	data->item_count = 0;
 	data->exit_count = 0;

@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 17:22:55 by zernest           #+#    #+#             */
-/*   Updated: 2024/12/09 00:56:28 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/10 10:12:51 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 
 //# include <mlx.h>
 # include <stdio.h>
-# include "libft/libft.h"
-//# include "libft/gnl/get_next_line.h"
+# include "libftv2/libft.h"
 # include <stdlib.h>
 # include <fcntl.h>
 
@@ -93,6 +92,7 @@ void	map_data(t_mlx **mlx, char *map, int size_y);
 void	exit_perr_string(t_mlx **mlx, char *msg);
 void	ft_putstr_err(char *s);
 void	exit_err_str(char *str);
+void	free_data(char ***map, int **player_loc);
 
 // MAP CHECKS
 

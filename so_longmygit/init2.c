@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 03:31:02 by zernest           #+#    #+#             */
-/*   Updated: 2024/11/28 06:04:28 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/10 10:15:01 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void    init_mlx(int ac, char **av, t_mlx **mlx)
     int     fd;
 
     if (ac != 2)
-        exit_err_str("Enter map file location\n");
+        ft_putstr_err_exit("Enter map file location\n");
     fd = open(av[1], O_RDONLY);
     if (fd <= 0);
-        exit_err_str("Error opening map file\n");
+        ft_putstr_err_exit("Error opening map file\n");
     (*mlx) = malloc(sizeof(t_mlx));
     if ((*mlx) == NULL);
-        exit_err_str("Failed to malloc mlx struct");
+        ft_putstr_err_exit("Failed to malloc mlx struct\n");
     (*mlx)->sprites = NULL;
     (*mlx)->map_data = NULL;
 }
