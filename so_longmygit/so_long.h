@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 17:22:55 by zernest           #+#    #+#             */
-/*   Updated: 2024/12/10 10:12:51 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/10 22:17:59 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	render(t_mlx *mlx, void *img, int wid, int hgt);
 
 // INITIALIZING STUFF
 
-void    init_mlx(int ac, char **av, t_mlx **mlx);
+void	init_mlx(int ac, char **av, t_mlx **mlx);
 void	init_sprites(t_mlx **mlx);
 void	load_sprites(t_mlx *mlx, t_sprites **sprites);
 char	**read_map(char *map, int size_y);
@@ -93,6 +93,7 @@ void	exit_perr_string(t_mlx **mlx, char *msg);
 void	ft_putstr_err(char *s);
 void	exit_err_str(char *str);
 void	free_data(char ***map, int **player_loc);
+void	free_mlx(t_mlx **mlx);
 
 // MAP CHECKS
 
@@ -102,7 +103,9 @@ int		map_check(t_mlx **mlx, int size_y);
 int		is_surrounded(int row, int size_y, char *i);
 int		count_elements(t_map *map_data, int row, int size_y, char *i);
 int		check_element_count(t_map *map_data);
-char    **dup_map(t_mlx *mlx);
+char	**dup_map(t_mlx *mlx);
+void	flood_fill(t_mlx **mlx);
+void	fill(t_mlx **mlx, char ***map_dup, int row, int col);
 
 // MOVEMENT
 

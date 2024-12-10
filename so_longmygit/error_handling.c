@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 20:38:21 by zernest           #+#    #+#             */
-/*   Updated: 2024/12/10 10:14:38 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/10 22:29:59 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,6 @@ void	exit_err_str(char *str)
 	write(2, "\n", 1);
 	// function to free everything here too
 	exit(1);
-}
-
-void	free_data(char ***map, int **player_loc)
-{
-	int	row;
-
-	while ((*map)[row])
-	{
-		free((*map)[row]);
-		row++;
-	}
-	free(*map);
-	free(*player_loc);
 }
 
 void	ft_putstr_err_exit(char *s)
