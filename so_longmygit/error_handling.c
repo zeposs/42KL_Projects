@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 20:38:21 by zernest           #+#    #+#             */
-/*   Updated: 2024/12/10 22:29:59 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/11 19:29:09 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	exit_perr_string(t_mlx **mlx, char *msg)
 {
 	perror(msg);
-	// function to free everything here
+	free_mlx(mlx);
 	exit(1);
 }
 
@@ -33,11 +33,11 @@ void	ft_putstr_err(char *s)
 	write(2, s, len);
 }
 
-void	exit_err_str(char *str)
+void	exit_err_str(t_mlx **mlx, char *str)
 {
 	ft_putstr_err(str);
 	write(2, "\n", 1);
-	// function to free everything here too
+	free_mlx(mlx);
 	exit(1);
 }
 
@@ -54,4 +54,13 @@ void	ft_putstr_err_exit(char *s)
 	}
 	write(2, s, len);
 	exit(1);
+}
+
+void	quit_game(t_mlx *mlx, int action)
+{
+	if (action == WIN)
+		ft_printf("ez win\n");
+	else
+		return ;
+	escape(mlx);
 }

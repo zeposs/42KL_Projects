@@ -6,71 +6,72 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 20:45:53 by zernest           #+#    #+#             */
-/*   Updated: 2024/12/05 00:08:08 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/11 17:15:22 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int movement_check(char **map, int row, int col)
+int	movement_check(char **map, int row, int col)
 {
-    int c_count;
+	int	c_count;
 
-    c_count = remaining_c(map);
-    if (map[row][col] == '1')
-        return (0);
-    if (map[row][col] == 'C' && c_count == 1)
-        return (EXIT_OPEN);
-    if (map[row][col] == 'E' && c_count != 0)
-        return (0);
-    if (map[row][col] == 'E' && c_count == 0)
-        return (1);
-    if (c_count == 0)
-        return (EXIT_OPEN);
+	c_count = remaining_c(map);
+	if (map[row][col] == '1')
+		return (0);
+	if (map[row][col] == 'C' && c_count == 1)
+		return (EXIT_OPEN);
+	if (map[row][col] == 'E' && c_count != 0)
+		return (0);
+	if (map[row][col] == 'E' && c_count == 0)
+		return (1);
+	if (c_count == 0)
+		return (EXIT_OPEN);
 }
 
-int remaining_c(char **map)
+int	remaining_c(char **map)
 {
-    int row;
-    int col;
-    int c_count;
+	int	row;
+	int	col;
+	int	c_count;
 
-    row = 0;
-    c_count = 0;
-    while (map[row] != NULL)
-    {
-        col = 0;
-        while (map[row][col] != '\0')
-        {
-            if (map[row][col] == 'C')
-                c_count++;
-            col++;
-        }
-        row++;
-    }
-    return (c_count);
+	row = 0;
+	c_count = 0;
+	while (map[row] != NULL)
+	{
+		col = 0;
+		while (map[row][col] != '\0')
+		{
+			if (map[row][col] == 'C')
+				c_count++;
+			col++;
+		}
+		row++;
+	}
+	return (c_count);
 }
 
-void    find_player(t_mlx *mlx, int **player_loc)
+void	find_player(t_mlx *mlx, int **player_loc)
 {
-    char    **map = mlx->map_data->map;
-    int     row;
-    int     col;
+	char	**map;
+	int		row;
+	int		col;
 
-    row = 0;
-    while (map[row]!= NULL)
-    {
-        col = 0;
-        while (map[row][col] != '\0')
-        {
-            if (map[row][col] == 'P')
-            {
-                (*player_loc)[0] = row;
-                (*player_loc)[1] = col;
-                return ;
-            }
-            col++;
-        }
-        row++;
-    }
+	map = mlx->map_data->map;
+	row = 0;
+	while (map[row] != NULL)
+	{
+		col = 0;
+		while (map[row][col] != '\0')
+		{
+			if (map[row][col] == 'P')
+			{
+				(*player_loc)[0] = row;
+				(*player_loc)[1] = col;
+				return ;
+			}
+			col++;
+		}
+		row++;
+	}
 }

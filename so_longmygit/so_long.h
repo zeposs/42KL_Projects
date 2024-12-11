@@ -6,25 +6,47 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 17:22:55 by zernest           #+#    #+#             */
-/*   Updated: 2024/12/10 22:17:59 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/11 22:08:33 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-//# include <mlx.h>
 # include <stdio.h>
 # include "libftv2/libft.h"
 # include <stdlib.h>
 # include <fcntl.h>
+# include <mlx/mlx.h>
+
+# ifdef __APPLE__
+#  define KEY_ESC 0x35
+#  define KEY_W 0x0D
+#  define KEY_UP 0x7E
+#  define KEY_A 0x00
+#  define KEY_LEFT 0x7B
+#  define KEY_S 0x01
+#  define KEY_DOWN 0x7D
+#  define KEY_D 0x02
+#  define KEY_RIGHT 0x7C
+# else
+#  define KEY_ESC 65307
+#  define KEY_W 119
+#  define KEY_UP 65362
+#  define KEY_A 97
+#  define KEY_LEFT 65361
+#  define KEY_S 115
+#  define KEY_DOWN 65364
+#  define KEY_D 100
+#  define KEY_RIGHT 65363
+# endif
 
 # define SIZE 48
 # define TILE_SIZE 48
-# define UP 65362
-# define DOWN 65364
-# define LEFT 65361
-# define RIGHT 65363
+# define UP 130
+# define DOWN 140
+# define LEFT 110
+# define RIGHT 120
 # define ESC 65307
 # define WKEY 119
 # define AKEY 97
@@ -85,15 +107,18 @@ void	load_sprites(t_mlx *mlx, t_sprites **sprites);
 char	**read_map(char *map, int size_y);
 void	init_map(t_mlx **mlx, char *map);
 void	map_data(t_mlx **mlx, char *map, int size_y);
+void	init_win(t_mlx **mlx);
+void	init_key(t_mlx **mlx);
 
 
-// ERROR HANDLING
+// ERROR HANDLING (quit game is in here too)
 
 void	exit_perr_string(t_mlx **mlx, char *msg);
 void	ft_putstr_err(char *s);
-void	exit_err_str(char *str);
+void	exit_err_str(t_mlx **mlx, char *str);
 void	free_data(char ***map, int **player_loc);
 void	free_mlx(t_mlx **mlx);
+void	quit_game(t_mlx *mlx, int action);
 
 // MAP CHECKS
 
@@ -107,10 +132,18 @@ char	**dup_map(t_mlx *mlx);
 void	flood_fill(t_mlx **mlx);
 void	fill(t_mlx **mlx, char ***map_dup, int row, int col);
 
-// MOVEMENT
+// MOVEMENT (escape functions is in here as well)
 
 int		movement_check(char **map, int row, int col);
 int		remaining_c(char **map);
 void	find_player(t_mlx *mlx, int **player_loc);
+int		check_movement_validity(t_mlx *mlx, int **player_loc, char **map_dup);
+void	move_up(t_mlx *mlx, int **player_loc, int *move_count);
+void	move_down(t_mlx *mlx, int **player_loc, int *move_count);
+void	move_left(t_mlx *mlx, int **player_loc, int *move_count);
+void	move_right(t_mlx *mlx, int **player_loc, int *move_count);
+int		escape(t_mlx *mlx);
+void	escape_key(t_mlx *mlx, int keycode, int **player_loc);
+int		controls(int key, t_mlx *mlx);
 
 #endif
