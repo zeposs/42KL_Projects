@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 00:41:12 by zernest           #+#    #+#             */
-/*   Updated: 2024/12/10 21:32:41 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/12 17:26:16 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	flood_fill(t_mlx **mlx)
 		exit_err_str(mlx, "Flood fill failed\n");
 	}
 	find_player(*mlx, &player_loc);
-	fill(&map_dup, player_loc[0], player_loc[1], mlx);
+	fill(mlx, &map_dup, player_loc[0], player_loc[1]);
 	if (remaining_c(map_dup) != 0 || (*mlx)->ex_state == 0)
 	{
 		free_data(&map_dup, &player_loc);

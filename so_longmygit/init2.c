@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 03:31:02 by zernest           #+#    #+#             */
-/*   Updated: 2024/12/11 22:07:58 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/12 17:06:07 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,11 @@ void	init_key(t_mlx **mlx)
 {
 	mlx_hook((*mlx)->win_ptr, 2, 1L << 0, controls, *mlx);
 	mlx_hook((*mlx)->win_ptr, 17, 0, escape, *mlx);
+}
+
+void	gameplay(t_mlx **mlx)
+{
+	init_win(mlx);
+	init_sprites(mlx);
+	img_to_win(*mlx, (*mlx)->map_data->map, 0);
 }

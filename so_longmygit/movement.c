@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 20:45:53 by zernest           #+#    #+#             */
-/*   Updated: 2024/12/11 17:15:22 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/12 17:52:30 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	movement_check(char **map, int row, int col)
 		return (1);
 	if (c_count == 0)
 		return (EXIT_OPEN);
+	return (1);
 }
 
 int	remaining_c(char **map)

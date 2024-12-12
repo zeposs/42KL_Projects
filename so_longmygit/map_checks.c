@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 21:07:35 by zernest           #+#    #+#             */
-/*   Updated: 2024/11/28 05:54:57 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/12 19:14:22 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,27 @@ int	calc_row(char *map)
 	int		fd;
 	int		line_count;
 	char	*line;
-
-	fd = open (map, O_RDONLY);
+	printf("test\n");
+	line_count = 0;
+	fd = open(map, O_RDONLY);
 	if (fd < 0)
 	{
 		perror("Error calculating rows");
 		return (-1);
 	}
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		free(line);
+		line = get_next_line(fd);
 		line_count++;
 	}
 	close(fd);
+	printf("%d", line_count);
 	return (line_count);
 }
 
-int		map_check(t_mlx **mlx, int size_y)
+int	map_check(t_mlx **mlx, int size_y)
 {
 	char	**map;
 	int		row;
@@ -57,22 +61,22 @@ int		map_check(t_mlx **mlx, int size_y)
 	row = 0;
 	while (row < size_y)
 	{
-		if (ft_strchr(map[row], ' ') != NULL
-			|| ft_strchr(map[row], '\t') != NULL);
-			return (0);
+		if (ft_strchr(map[row], ' ') != NULL || ft_strchr(map[row],
+				'\t') != NULL)
+			;
+		return (0);
 		if (is_surrounded(row + 1, size_y, map[row]) == 0)
 			return (0);
 		if (count_elements((*mlx)->map_data, row + 1, size_y, map[row]) == 0)
 			return (0);
-		if (check_element_count((*mlx)->map_data) == 0);
-			return (0);
 		row++;
 	}
+	return (check_element_count((*mlx)->map_data));
 }
 
 int	is_surrounded(int row, int size_y, char *i)
 {
-	size_t last_col;
+	size_t	last_col;
 
 	if (row == 1 || row == size_y)
 	{

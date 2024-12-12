@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 17:22:55 by zernest           #+#    #+#             */
-/*   Updated: 2024/12/11 22:08:33 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/12 17:35:20 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 # include "libftv2/libft.h"
 # include <stdlib.h>
 # include <fcntl.h>
-# include <mlx/mlx.h>
+# include "mlx/mlx.h"
+# include "libftv2/ft_printf/ft_printf.h"
+# include "libftv2/gnl/get_next_line.h"
 
 # ifdef __APPLE__
 #  define KEY_ESC 0x35
@@ -109,7 +111,7 @@ void	init_map(t_mlx **mlx, char *map);
 void	map_data(t_mlx **mlx, char *map, int size_y);
 void	init_win(t_mlx **mlx);
 void	init_key(t_mlx **mlx);
-
+void	gameplay(t_mlx **mlx);
 
 // ERROR HANDLING (quit game is in here too)
 
@@ -119,6 +121,7 @@ void	exit_err_str(t_mlx **mlx, char *str);
 void	free_data(char ***map, int **player_loc);
 void	free_mlx(t_mlx **mlx);
 void	quit_game(t_mlx *mlx, int action);
+void	ft_putstr_err_exit(char *s);
 
 // MAP CHECKS
 
@@ -145,5 +148,6 @@ void	move_right(t_mlx *mlx, int **player_loc, int *move_count);
 int		escape(t_mlx *mlx);
 void	escape_key(t_mlx *mlx, int keycode, int **player_loc);
 int		controls(int key, t_mlx *mlx);
+void	step_counter(t_mlx *mlx, int step_count);
 
 #endif

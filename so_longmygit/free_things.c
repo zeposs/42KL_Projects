@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 21:38:58 by zernest           #+#    #+#             */
-/*   Updated: 2024/12/11 16:57:06 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/12 17:27:14 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	free_data(char ***map, int **player_loc)
 {
 	int	row;
 
+	row = 0;
 	while ((*map)[row])
 	{
 		free((*map)[row]);
