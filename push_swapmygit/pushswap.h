@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:01:38 by zernest           #+#    #+#             */
-/*   Updated: 2024/10/21 21:16:22 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/15 00:11:50 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	exit_error_str(char *str);
 void	ft_putstr_err(char *s);
 void	ft_free(t_stack **lst);
 void	ft_freestr(char **lst);
+int		ft_atoi2(const char *str);
+void	ft_error(void);
 
 /* LIST UTILITIES */
 
