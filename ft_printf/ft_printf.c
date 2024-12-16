@@ -38,7 +38,7 @@ int	ft_printf(const char *format, ...)
 	return (len);
 }
 
-#include <stdio.h>
+/* #include <stdio.h>
 int	main(void)
 {
 	int	fake;
@@ -52,4 +52,4 @@ int	main(void)
 	printf("fake value: %d", fake);
 	write(1, "\n", 1);
 	printf("real value: %d", real);
-}
+} */
