@@ -6,17 +6,29 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 19:39:21 by zernest           #+#    #+#             */
-/*   Updated: 2024/12/12 17:51:01 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/16 22:05:26 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_movement_validity(t_mlx *mlx, int **player_loc, char **map_dup)
+int	check_movement_validity(t_mlx *mlx, int **player_loc, char **map_dup,
+		int dir)
 {
 	int	act_code;
 
-	act_code = movement_check(map_dup, (*player_loc)[0] - 1, (*player_loc)[1]);
+	if (dir == 1)
+		act_code = movement_check(map_dup, (*player_loc)[0] - 1,
+				(*player_loc)[1]);
+	else if (dir == 2)
+		act_code = movement_check(map_dup, (*player_loc)[0] + 1,
+				(*player_loc)[1]);
+	else if (dir == 3)
+		act_code = movement_check(map_dup, (*player_loc)[0], (*player_loc)[1]
+				- 1);
+	else
+		act_code = movement_check(map_dup, (*player_loc)[0], (*player_loc)[1]
+				+ 1);
 	if (act_code == 0)
 		return (0);
 	if (act_code == WIN)
@@ -34,7 +46,7 @@ void	move_up(t_mlx *mlx, int **player_loc, int *move_count)
 
 	map_dup = mlx->map_data->map;
 	find_player(mlx, player_loc);
-	act_code = check_movement_validity(mlx, player_loc, map_dup);
+	act_code = check_movement_validity(mlx, player_loc, map_dup, 1);
 	if (act_code == 0)
 		return ;
 	(*move_count)++;
@@ -54,7 +66,7 @@ void	move_down(t_mlx *mlx, int **player_loc, int *move_count)
 
 	map_dup = mlx->map_data->map;
 	find_player(mlx, player_loc);
-	act_code = check_movement_validity(mlx, player_loc, map_dup);
+	act_code = check_movement_validity(mlx, player_loc, map_dup, 2);
 	if (act_code == 0)
 		return ;
 	(*move_count)++;
@@ -74,7 +86,7 @@ void	move_left(t_mlx *mlx, int **player_loc, int *move_count)
 
 	map_dup = mlx->map_data->map;
 	find_player(mlx, player_loc);
-	act_code = check_movement_validity(mlx, player_loc, map_dup);
+	act_code = check_movement_validity(mlx, player_loc, map_dup, 3);
 	if (act_code == 0)
 		return ;
 	(*move_count)++;
@@ -94,7 +106,7 @@ void	move_right(t_mlx *mlx, int **player_loc, int *move_count)
 
 	map_dup = mlx->map_data->map;
 	find_player(mlx, player_loc);
-	act_code = check_movement_validity(mlx, player_loc, map_dup);
+	act_code = check_movement_validity(mlx, player_loc, map_dup, 4);
 	if (act_code == 0)
 		return ;
 	(*move_count)++;

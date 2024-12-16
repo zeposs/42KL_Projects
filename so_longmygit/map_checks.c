@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 21:07:35 by zernest           #+#    #+#             */
-/*   Updated: 2024/12/12 19:14:22 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/16 22:04:39 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	calc_row(char *map)
 	int		fd;
 	int		line_count;
 	char	*line;
-	printf("test\n");
+
 	line_count = 0;
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
@@ -48,7 +48,6 @@ int	calc_row(char *map)
 		line_count++;
 	}
 	close(fd);
-	printf("%d", line_count);
 	return (line_count);
 }
 
@@ -63,8 +62,7 @@ int	map_check(t_mlx **mlx, int size_y)
 	{
 		if (ft_strchr(map[row], ' ') != NULL || ft_strchr(map[row],
 				'\t') != NULL)
-			;
-		return (0);
+			return (0);
 		if (is_surrounded(row + 1, size_y, map[row]) == 0)
 			return (0);
 		if (count_elements((*mlx)->map_data, row + 1, size_y, map[row]) == 0)
@@ -90,7 +88,7 @@ int	is_surrounded(int row, int size_y, char *i)
 	else
 	{
 		last_col = ft_strlen(i) - 1;
-		if (i[0] == '1' && i[last_col] == '0')
+		if (i[0] == '1' && i[last_col] == '1')
 			return (1);
 		return (0);
 	}

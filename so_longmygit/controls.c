@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 20:17:16 by zernest           #+#    #+#             */
-/*   Updated: 2024/12/12 17:16:58 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/16 22:00:57 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,15 @@
 
 int	escape(t_mlx *mlx)
 {
+	mlx_destroy_image(mlx->mlx_ptr, (mlx)->sprites->player);
+	mlx_destroy_image(mlx->mlx_ptr, (mlx)->sprites->wall);
+	mlx_destroy_image(mlx->mlx_ptr, (mlx)->sprites->item);
+	mlx_destroy_image(mlx->mlx_ptr, (mlx)->sprites->floor);
+	mlx_destroy_image(mlx->mlx_ptr, (mlx)->sprites->exit_open);
+	mlx_destroy_image(mlx->mlx_ptr, (mlx)->sprites->exit_close);
 	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 	mlx_destroy_display(mlx->mlx_ptr);
+	free(mlx->mlx_ptr);
 	free_mlx(&mlx);
 	exit(0);
 	return (0);
@@ -52,7 +59,8 @@ int	controls(int key, t_mlx *mlx)
 	else if (key == KEY_RIGHT || key == KEY_D)
 		move_right(mlx, &player_loc, &step_count);
 	else
-		return (0);
+		return (free(player_loc), 0);
+	free(player_loc);
 	step_counter(mlx, step_count);
 	ft_printf("Steps taken: %i\n", step_count);
 	return (0);

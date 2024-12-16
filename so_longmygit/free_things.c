@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 21:38:58 by zernest           #+#    #+#             */
-/*   Updated: 2024/12/12 17:27:14 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/16 22:03:10 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,17 @@ void	free_mlx(t_mlx **mlx)
 	int	i;
 
 	i = -1;
-
 	if ((*mlx)->map_data)
 	{
 		if ((*mlx)->map_data->map)
 		{
 			while ((*mlx)->map_data->map[++i])
 				free((*mlx)->map_data->map[i]);
+			free((*mlx)->map_data->map);
 		}
 		free((*mlx)->map_data);
 	}
 	if ((*mlx)->sprites != NULL)
-	{
-		if ((*mlx)->sprites->player)
-			free((*mlx)->sprites->player);
-	}
+		free((*mlx)->sprites);
 	free(*mlx);
 }

@@ -6,13 +6,13 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 21:07:35 by zernest           #+#    #+#             */
-/*   Updated: 2024/12/12 19:13:54 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/16 22:03:58 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int check_element_count(t_map *map_data)
+int	check_element_count(t_map *map_data)
 {
 	if (map_data->player_count != 1)
 		return (0);

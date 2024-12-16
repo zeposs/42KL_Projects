@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 00:41:12 by zernest           #+#    #+#             */
-/*   Updated: 2024/12/12 17:26:16 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/16 22:02:23 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,6 @@ void	flood_fill(t_mlx **mlx)
 	}
 	find_player(*mlx, &player_loc);
 	fill(mlx, &map_dup, player_loc[0], player_loc[1]);
-	if (remaining_c(map_dup) != 0 || (*mlx)->ex_state == 0)
-	{
-		free_data(&map_dup, &player_loc);
-		exit_err_str(mlx, "Error: Invalid Map");
-	}
 	free_data(&map_dup, &player_loc);
 }
 

@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 20:32:30 by zernest           #+#    #+#             */
-/*   Updated: 2024/12/12 19:13:13 by zernest          ###   ########.fr       */
+/*   Updated: 2024/12/16 22:03:32 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,13 @@ void	load_sprites(t_mlx *mlx, t_sprites **sprites)
 			&width, &height);
 	(*sprites)->floor = mlx_xpm_file_to_image(mlx->mlx_ptr, BG_PATH,
 			&width, &height);
-	(*sprites)->exit_close = mlx_xpm_file_to_image(mlx->mlx_ptr, BG_PATH,
+	(*sprites)->exit_close = mlx_xpm_file_to_image(mlx->mlx_ptr, EXIT_CLOS_PATH,
 			&width, &height);
-	(*sprites)->exit_open = mlx_xpm_file_to_image(mlx->mlx_ptr, BG_PATH,
+	(*sprites)->exit_open = mlx_xpm_file_to_image(mlx->mlx_ptr, EXIT_OPEN_PATH,
 			&width, &height);
-	(*sprites)->player = mlx_xpm_file_to_image(mlx->mlx_ptr, BG_PATH,
+	(*sprites)->player = mlx_xpm_file_to_image(mlx->mlx_ptr, P_PATH,
+			&width, &height);
+	(*sprites)->item = mlx_xpm_file_to_image(mlx->mlx_ptr, C_PATH,
 			&width, &height);
 }
 
@@ -46,11 +48,9 @@ void	init_map(t_mlx **mlx, char *map)
 	if ((*mlx)->mlx_ptr == NULL)
 		exit_perr_string(mlx, "Failed to initialize map");
 	(*mlx)->win_y = calc_row(map);
-	printf("%d\n", (*mlx)->win_y);
 	if ((*mlx)->win_y < 1)
 		exit_perr_string(mlx, "Failed to initialize map");
 	map_data(mlx, map, (*mlx)->win_y);
-	printf("%d\n", (*mlx)->win_y);
 	if (!map_check(mlx, (*mlx)->win_y))
 		exit_err_str(mlx, "Your map is broken lol");
 }
@@ -93,4 +93,3 @@ char	**read_map(char *map, int size_y)
 	full_map[size_y] = NULL;
 	return (full_map);
 }
-
