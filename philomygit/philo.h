@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 22:22:12 by zernest           #+#    #+#             */
-/*   Updated: 2025/01/23 19:08:40 by zernest          ###   ########.fr       */
+/*   Updated: 2025/02/04 06:20:08 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,9 @@ typedef struct s_philo
 // utils
 int		ft_strlen(char const *str);
 void	ft_putstr_err(char *s);
+int	    ft_atoi(const char *str);
+
+// init
+void    init_struct(t_philo *philo, char **av, int ac);
 
 #endif
