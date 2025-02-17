@@ -6,18 +6,67 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 02:27:18 by zernest           #+#    #+#             */
-/*   Updated: 2025/02/04 06:19:20 by zernest          ###   ########.fr       */
+/*   Updated: 2025/02/12 16:22:31 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void    init_struct(t_philo *philo, char **av, int ac)
+void	init_struct(t_data *data, char **av, int ac)
 {
-    philo->num = ft_atoi(av[1]);
-    philo->time_to_die = ft_atoi(av[2]);
-    philo->time_to_eat = ft_atoi(av[3]);
-    philo->time_to_sleep = ft_atoi(av[4]);
-    if (ac == 6)
-        philo->amount_to_eat = ft_atoi(av[5]);
+	data->num_philo = ft_atoi(av[1]);
+	data->time_to_die = ft_atoi(av[2]);
+	data->time_to_eat = ft_atoi(av[3]);
+	data->time_to_sleep = ft_atoi(av[4]);
+	if (ac == 6)
+	{
+		data->amount_to_eat = ft_atoi(av[5]);
+		if (data->amount_to_eat < 0)
+			ft_putstr_err("Error: Ensure proper philo format");
+	}
+	else
+		data->amount_to_eat = -1;
+	if (data->num_philo < 1 || data->num_philo > 200
+		|| data->time_to_die < 60 || data->time_to_eat < 60 || data->time_to_sleep < 60)
+		ft_putstr_err("At least one argument is invalid");
+	init_mutexes(data);
+	init_philo(data);
+}
+
+void	init_mutexes(t_data *data)
+{
+	int i;
+	int error;
+
+	i = 0;
+	data->forks = malloc(sizeof(pthread_mutex_t) * data->num_philo);
+	if (!data->forks)
+		ft_putstr_err("Error: Failed to allocate memory for mutex");
+	while (i < data->num_philo)
+	{
+		error = pthread_mutex_init(&data->forks[i], NULL);
+		if (error != 0)
+			ft_putstr_err("Error: Failed to initialize mutex");
+		i++;
+	}
+	error = pthread_mutex_init(&data->printing_lock, NULL);
+	if (error != 0)
+		ft_putstr_err("Error: Failed to initialize printing lock");
+}
+
+void	init_philo(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->num_philo)
+	{
+		data->philo[i].id = i;
+		data->philo[i].last_meal = 0;
+		data->philo[i].meals_eaten = 0;
+		data->philo[i].left_fork_index = i;
+		data->philo[i].right_fork_index = (i + 1) % data->num_philo;
+		data->philo[i].data = data;
+		i++;
+	}
 }
