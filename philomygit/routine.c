@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:08:38 by zernest           #+#    #+#             */
-/*   Updated: 2025/02/17 23:12:51 by zernest          ###   ########.fr       */
+/*   Updated: 2025/02/18 23:09:18 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,15 @@ void print_action(t_data *data, int id, const char *action)
 	- data->start_time, id + 1, action);
 	pthread_mutex_unlock(&data->sim_lock);
 	pthread_mutex_unlock(&data->printing_lock);
+}
+
+int get_sim_status(t_data *data)
+{
+	int status;
+	pthread_mutex_lock(&data->sim_lock);
+	status = data->simulation_end;
+	pthread_mutex_unlock(&data->sim_lock);
+	return (status);
 }
 
 // void eat(t_philo *philo)
@@ -75,15 +84,18 @@ void *routine(void *arg)
 	t_philo *philo = (t_philo *)arg;
 	t_data *data = philo->data;
 
-	philo->last_meal = current_timestamp;
-	if (philo->id % 2 == 0)
+	philo->last_meal = current_timestamp();
+	//printf("start: %d | %lld | %lld\n", philo->id, philo->last_meal, current_timestamp());
+
+	if ((philo->id + 1) % 2 == 0)
 	{
-		print_action(data, philo->id, "is thinking");
+		//print_action(data, philo->id, "is thinking");
 		timer(data->time_to_eat);
 	}
-	while (!data->simulation_end)
+	
+	while (!get_sim_status(data))
 	{
-		if (data->simulation_end)
+		if (get_sim_status(data))
 			break;
 		eat(philo);
 		print_action(data, philo->id, "is sleeping");
@@ -97,8 +109,9 @@ void *end_checker(void *arg)
 {
 	t_data *data = (t_data *)arg;
 	int i;
+	long long time_diff;
 	
-	while (!data->simulation_end)
+	while (!get_sim_status(data))
 	{
 		int finished;
 		int i;
@@ -107,8 +120,10 @@ void *end_checker(void *arg)
 		i = 0;
 		while (i < data->num_philo)
 		{
-			if (current_timestamp() - data->philo[i].last_meal > data->time_to_die)
+			time_diff = current_timestamp() - data->philo[i].last_meal;
+			if (time_diff > data->time_to_die)
 			{
+				//printf("troubleshoot: %d | %lld | %lld | %lld", data->philo[i].id, time_diff, data->philo[i].last_meal, current_timestamp());
 				print_action(data, data->philo[i].id, "died");
 				pthread_mutex_lock(&data->sim_lock);
 				data->simulation_end = 1;
@@ -120,16 +135,21 @@ void *end_checker(void *arg)
 		if (data->amount_to_eat != -1)
 		{
 			i = 0;
-			while (i, data->num_philo)
+			while (i < data->num_philo)
 			{
 				if (data->philo[i].meals_eaten < data->amount_to_eat)
 				{
 					finished = 0;
 					break;
 				}
+				i++;
 			}
 			if (finished)
+			{
+				pthread_mutex_lock(&data->sim_lock);
 				data->simulation_end = 1;
+				pthread_mutex_unlock(&data->sim_lock);
+			}
 		}
 		usleep(1000);
 	}
