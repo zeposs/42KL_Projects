@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 22:22:12 by zernest           #+#    #+#             */
-/*   Updated: 2025/02/14 17:35:30 by zernest          ###   ########.fr       */
+/*   Updated: 2025/02/17 23:12:07 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_data
 	t_philo			philo[200];
 	pthread_mutex_t *forks; 
 	pthread_mutex_t printing_lock;
+	pthread_mutex_t sim_lock;
 }	t_data;
 
 // utils

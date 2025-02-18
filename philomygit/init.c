@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 02:27:18 by zernest           #+#    #+#             */
-/*   Updated: 2025/02/12 16:22:31 by zernest          ###   ########.fr       */
+/*   Updated: 2025/02/17 23:04:49 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ void	init_mutexes(t_data *data)
 	error = pthread_mutex_init(&data->printing_lock, NULL);
 	if (error != 0)
 		ft_putstr_err("Error: Failed to initialize printing lock");
+	error = pthread_mutex_init(&data->sim_lock, NULL);
+	if (error != 0)
+		ft_putstr_err("Error: Failed to initialize sim lock");
 }
 
 void	init_philo(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:08:38 by zernest           #+#    #+#             */
-/*   Updated: 2025/02/17 18:46:39 by zernest          ###   ########.fr       */
+/*   Updated: 2025/02/17 23:12:51 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 void print_action(t_data *data, int id, const char *action)
 {
 	pthread_mutex_lock(&data->printing_lock);
-	printf("%lld %d %s\n", current_timestamp()
+	pthread_mutex_lock(&data->sim_lock);
+	if (data->simulation_end == 0)
+		printf("%lld %d %s\n", current_timestamp()
 	- data->start_time, id + 1, action);
+	pthread_mutex_unlock(&data->sim_lock);
 	pthread_mutex_unlock(&data->printing_lock);
 }
 
@@ -80,9 +83,9 @@ void *routine(void *arg)
 	}
 	while (!data->simulation_end)
 	{
-		eat(philo);
 		if (data->simulation_end)
 			break;
+		eat(philo);
 		print_action(data, philo->id, "is sleeping");
 		timer(data->time_to_sleep);
 		print_action(data, philo->id, "is thinking");
@@ -107,7 +110,9 @@ void *end_checker(void *arg)
 			if (current_timestamp() - data->philo[i].last_meal > data->time_to_die)
 			{
 				print_action(data, data->philo[i].id, "died");
+				pthread_mutex_lock(&data->sim_lock);
 				data->simulation_end = 1;
+				pthread_mutex_unlock(&data->sim_lock);
 				break;
 			}
 			i++;

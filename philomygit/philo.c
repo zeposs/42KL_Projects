@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 22:32:52 by zernest           #+#    #+#             */
-/*   Updated: 2025/02/14 17:33:08 by zernest          ###   ########.fr       */
+/*   Updated: 2025/02/17 23:19:56 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,19 @@ int main(int ac, char **av)
 	}
 	init_struct(&data, av, ac);
 	run_simulation(&data);
+	// cleanup(&data)
+	// - print_lock
+	// --loop through the fork 
+	pthread_mutex_destroy(&data.sim_lock);
 	return (0);
 }
 
 long long current_timestamp(void)
 {
 	struct timeval tv;
-	long long int milisec;
 
 	gettimeofday(&tv, NULL);
-	milisec = (tv.tv_sec * 1000LL) + (tv.tv_usec / 1000);
-	return (milisec);
+	return (tv.tv_sec * 1000LL) + (tv.tv_usec / 1000);
 }
 
 void timer(long long ms)
@@ -40,6 +42,17 @@ void timer(long long ms)
 	long long start = current_timestamp();
 	while (current_timestamp() - start < ms)
 	{
-		usleep(100); // Sleep for 100 microseconds
+		usleep(10); // Sleep for 100 microseconds
 	}
 }
+
+// static bool kill_philo(t_philo *philo)
+// {
+// 	time_t	time;
+
+// 	time = current_timestamp();
+// 	if ((time - philo->last_meal) >= philo->data->time_to_die)
+// 	{
+		
+// 	}
+// }
