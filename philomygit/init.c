@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 02:27:18 by zernest           #+#    #+#             */
-/*   Updated: 2025/02/20 21:18:27 by zernest          ###   ########.fr       */
+/*   Updated: 2025/02/20 21:59:52 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,11 @@ void free_mutexes(t_data *data)
 	
 	// Destroy each philosopher's meal lock.
 	i = 0;
-	while (i < data->num_philo)
-	{
-		pthread_mutex_destroy(&data->philo[i].meal_lock);
-		i++;
-	}
+	// while (i < data->num_philo)
+	// {
+	// 	pthread_mutex_destroy(&data->philo[i].meal_lock);
+	// 	i++;
+	// }
 	// Free the forks array.
 	free(data->forks);
 }

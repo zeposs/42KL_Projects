@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:08:38 by zernest           #+#    #+#             */
-/*   Updated: 2025/02/20 21:20:47 by zernest          ###   ########.fr       */
+/*   Updated: 2025/02/20 21:23:04 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ void eat(t_philo *philo)
 		pthread_mutex_lock(&data->forks[philo->left_fork_index]);
 		print_action(data, philo->id, "has taken a fork");
 	}
-	pthread_mutex_lock(&philo->meal_lock);
+	// pthread_mutex_lock(&philo->meal_lock);
 	philo->last_meal = current_timestamp();
-	pthread_mutex_unlock(&philo->meal_lock);
+	// pthread_mutex_unlock(&philo->meal_lock);
 	print_action(data, philo->id, "is eating");
 	philo->meals_eaten++;
 	timer(data->time_to_eat);

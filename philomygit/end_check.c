@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 20:25:17 by zernest           #+#    #+#             */
-/*   Updated: 2025/02/20 21:20:50 by zernest          ###   ########.fr       */
+/*   Updated: 2025/02/20 22:02:17 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static int check_meals(t_data *data)
 void *end_checker(void *arg)
 {
 	t_data *data = (t_data *)arg;
+
 	while (!get_sim_status(data))
 	{
 		if (check_deaths(data) || check_meals(data))
@@ -74,4 +75,9 @@ void *end_checker(void *arg)
 		usleep(1000);
 	}
 	return (NULL);
+}
+
+int	get_philo_meal_count(t_data *data)
+{
+	
 }
