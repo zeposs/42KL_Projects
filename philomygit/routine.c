@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:08:38 by zernest           #+#    #+#             */
-/*   Updated: 2025/02/20 21:23:04 by zernest          ###   ########.fr       */
+/*   Updated: 2025/02/20 22:53:05 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,13 @@ void eat(t_philo *philo)
 		pthread_mutex_lock(&data->forks[philo->left_fork_index]);
 		print_action(data, philo->id, "has taken a fork");
 	}
-	// pthread_mutex_lock(&philo->meal_lock);
+	pthread_mutex_lock(&philo->meal_lock);
 	philo->last_meal = current_timestamp();
-	// pthread_mutex_unlock(&philo->meal_lock);
+	pthread_mutex_unlock(&philo->meal_lock);
 	print_action(data, philo->id, "is eating");
+	pthread_mutex_lock(&philo->meal_lock);
 	philo->meals_eaten++;
+	pthread_mutex_unlock(&philo->meal_lock);
 	timer(data->time_to_eat);
 	pthread_mutex_unlock(&data->forks[philo->left_fork_index]);
 	pthread_mutex_unlock(&data->forks[philo->right_fork_index]);
@@ -77,18 +79,19 @@ void eat(t_philo *philo)
 
 void *routine(void *arg)
 {
-	t_philo *philo = (t_philo *)arg;
-	t_data *data = philo->data;
+	t_philo *philo;
+	t_data	*data;
 
+	philo = (t_philo *)arg;
+	data = philo->data;
+	pthread_mutex_lock(&philo->meal_lock);
 	philo->last_meal = current_timestamp();
-	//printf("start: %d | %lld | %lld\n", philo->id, philo->last_meal, current_timestamp());
-
+	pthread_mutex_unlock(&philo->meal_lock);
+	if (philo->data->num_philo == 1)
+		return (print_action(philo->data, 0, "died")
+			, philo->data->simulation_end = 1 ,NULL);
 	if ((philo->id + 1) % 2 == 0)
-	{
-		//print_action(data, philo->id, "is thinking");
 		timer(data->time_to_eat);
-	}
-	
 	while (!get_sim_status(data))
 	{
 		if (get_sim_status(data))

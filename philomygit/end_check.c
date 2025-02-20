@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 20:25:17 by zernest           #+#    #+#             */
-/*   Updated: 2025/02/20 22:02:17 by zernest          ###   ########.fr       */
+/*   Updated: 2025/02/20 22:28:55 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int check_meals(t_data *data)
 	i = 0;
 	while (i < data->num_philo)
 	{
-		if (data->philo[i].meals_eaten < data->amount_to_eat)
+		if (get_philo_meal_count(&data->philo[i]) < data->amount_to_eat)
 		{
 			finished = 0;
 			break;
@@ -77,7 +77,13 @@ void *end_checker(void *arg)
 	return (NULL);
 }
 
-int	get_philo_meal_count(t_data *data)
+int	get_philo_meal_count(t_philo *philo)
 {
-	
+	int meal_count;
+
+	pthread_mutex_lock(&philo->meal_lock);
+	meal_count = philo->meals_eaten;
+	pthread_mutex_unlock(&philo->meal_lock);
+
+	return (meal_count);
 }

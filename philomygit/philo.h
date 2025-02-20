@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 22:22:12 by zernest           #+#    #+#             */
-/*   Updated: 2025/02/20 21:58:57 by zernest          ###   ########.fr       */
+/*   Updated: 2025/02/20 22:56:34 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int		ft_strlen(char const *str);
 void	ft_putstr_err(char *s);
 int		ft_atoi(const char *str);
 int		get_sim_status(t_data *data);
+int		get_philo_meal_count(t_philo *philo);
 
 // init
 void		init_struct(t_data *philo, char **av, int ac);
