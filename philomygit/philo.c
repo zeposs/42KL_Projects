@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 22:32:52 by zernest           #+#    #+#             */
-/*   Updated: 2025/02/17 23:19:56 by zernest          ###   ########.fr       */
+/*   Updated: 2025/02/20 20:55:20 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ int main(int ac, char **av)
 	{
 		ft_putstr_err("Invalid format");
 	}
+	
 	init_struct(&data, av, ac);
 	run_simulation(&data);
 	// cleanup(&data)
 	// - print_lock
 	// --loop through the fork 
-	pthread_mutex_destroy(&data.sim_lock);
+	cleanup(&data);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:08:38 by zernest           #+#    #+#             */
-/*   Updated: 2025/02/18 23:09:18 by zernest          ###   ########.fr       */
+/*   Updated: 2025/02/20 21:20:47 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,33 +50,29 @@ int get_sim_status(t_data *data)
 
 void eat(t_philo *philo)
 {
-    t_data *data = philo->data;
-    
-    // Determine the order based on fork IDs.
-    if (philo->left_fork_index < philo->right_fork_index)
-    {
-        pthread_mutex_lock(&data->forks[philo->left_fork_index]);
-        print_action(data, philo->id, "has taken a fork");
-        pthread_mutex_lock(&data->forks[philo->right_fork_index]);
-        print_action(data, philo->id, "has taken a fork");
-    }
-    else
-    {
-        pthread_mutex_lock(&data->forks[philo->right_fork_index]);
-        print_action(data, philo->id, "has taken a fork");
-        pthread_mutex_lock(&data->forks[philo->left_fork_index]);
-        print_action(data, philo->id, "has taken a fork");
-    }
-    
-    // Now eat
-    philo->last_meal = current_timestamp();
-    print_action(data, philo->id, "is eating");
-    philo->meals_eaten++;
-    timer(data->time_to_eat);
-    
-    // Release forks
-    pthread_mutex_unlock(&data->forks[philo->left_fork_index]);
-    pthread_mutex_unlock(&data->forks[philo->right_fork_index]);
+	t_data *data = philo->data;
+	if (philo->left_fork_index < philo->right_fork_index)
+	{
+		pthread_mutex_lock(&data->forks[philo->left_fork_index]);
+		print_action(data, philo->id, "has taken a fork");
+		pthread_mutex_lock(&data->forks[philo->right_fork_index]);
+		print_action(data, philo->id, "has taken a fork");
+	}
+	else
+	{
+		pthread_mutex_lock(&data->forks[philo->right_fork_index]);
+		print_action(data, philo->id, "has taken a fork");
+		pthread_mutex_lock(&data->forks[philo->left_fork_index]);
+		print_action(data, philo->id, "has taken a fork");
+	}
+	pthread_mutex_lock(&philo->meal_lock);
+	philo->last_meal = current_timestamp();
+	pthread_mutex_unlock(&philo->meal_lock);
+	print_action(data, philo->id, "is eating");
+	philo->meals_eaten++;
+	timer(data->time_to_eat);
+	pthread_mutex_unlock(&data->forks[philo->left_fork_index]);
+	pthread_mutex_unlock(&data->forks[philo->right_fork_index]);
 }
 
 void *routine(void *arg)
@@ -105,56 +101,58 @@ void *routine(void *arg)
 	return (NULL);
 }
 
-void *end_checker(void *arg)
-{
-	t_data *data = (t_data *)arg;
-	int i;
-	long long time_diff;
+// void *end_checker(void *arg)
+// {
+// 	t_data *data = (t_data *)arg;
+// 	int i;
+// 	long long time_diff;
 	
-	while (!get_sim_status(data))
-	{
-		int finished;
-		int i;
+// 	while (!get_sim_status(data))
+// 	{
+// 		int finished;
+// 		int i;
 
-		finished = 1;
-		i = 0;
-		while (i < data->num_philo)
-		{
-			time_diff = current_timestamp() - data->philo[i].last_meal;
-			if (time_diff > data->time_to_die)
-			{
-				//printf("troubleshoot: %d | %lld | %lld | %lld", data->philo[i].id, time_diff, data->philo[i].last_meal, current_timestamp());
-				print_action(data, data->philo[i].id, "died");
-				pthread_mutex_lock(&data->sim_lock);
-				data->simulation_end = 1;
-				pthread_mutex_unlock(&data->sim_lock);
-				break;
-			}
-			i++;
-		}
-		if (data->amount_to_eat != -1)
-		{
-			i = 0;
-			while (i < data->num_philo)
-			{
-				if (data->philo[i].meals_eaten < data->amount_to_eat)
-				{
-					finished = 0;
-					break;
-				}
-				i++;
-			}
-			if (finished)
-			{
-				pthread_mutex_lock(&data->sim_lock);
-				data->simulation_end = 1;
-				pthread_mutex_unlock(&data->sim_lock);
-			}
-		}
-		usleep(1000);
-	}
-	return (NULL);
-}
+// 		finished = 1;
+// 		i = 0;
+// 		while (i < data->num_philo)
+// 		{
+// 			pthread_mutex_lock(&data->philo[i].meal_lock);
+// 			time_diff = current_timestamp() - data->philo[i].last_meal;
+// 			pthread_mutex_lock(&data->philo[i].meal_lock);
+// 			if (time_diff > data->time_to_die)
+// 			{
+// 				//printf("troubleshoot: %d | %lld | %lld | %lld", data->philo[i].id, time_diff, data->philo[i].last_meal, current_timestamp());
+// 				print_action(data, data->philo[i].id, "died");
+// 				pthread_mutex_lock(&data->sim_lock);
+// 				data->simulation_end = 1;
+// 				pthread_mutex_unlock(&data->sim_lock);
+// 				break;
+// 			}
+// 			i++;
+// 		}
+// 		if (data->amount_to_eat != -1)
+// 		{
+// 			i = 0;
+// 			while (i < data->num_philo)
+// 			{
+// 				if (data->philo[i].meals_eaten < data->amount_to_eat)
+// 				{
+// 					finished = 0;
+// 					break;
+// 				}
+// 				i++;
+// 			}
+// 			if (finished)
+// 			{
+// 				pthread_mutex_lock(&data->sim_lock);
+// 				data->simulation_end = 1;
+// 				pthread_mutex_unlock(&data->sim_lock);
+// 			}
+// 		}
+// 		usleep(1000);
+// 	}
+// 	return (NULL);
+// }
 
 void run_simulation(t_data *data)
 {

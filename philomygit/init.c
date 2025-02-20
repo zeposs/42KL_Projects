@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 02:27:18 by zernest           #+#    #+#             */
-/*   Updated: 2025/02/17 23:04:49 by zernest          ###   ########.fr       */
+/*   Updated: 2025/02/20 21:18:27 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,42 @@ void	init_philo(t_data *data)
 		data->philo[i].left_fork_index = i;
 		data->philo[i].right_fork_index = (i + 1) % data->num_philo;
 		data->philo[i].data = data;
+		if (pthread_mutex_init(&data->philo[i].meal_lock, NULL) != 0)
+		{
+			ft_putstr_err("Error initializing meal lock");
+			exit(1);
+		}
 		i++;
 	}
+}
+
+void free_mutexes(t_data *data)
+{
+	int i;
+	
+	i = 0;
+	while (i < data->num_philo)
+	{
+		printf("%s", "FREE LEAK");
+		pthread_mutex_destroy(&data->forks[i]);
+		i++;
+	}
+	// Destroy the printing and simulation locks.
+	pthread_mutex_destroy(&data->printing_lock);
+	pthread_mutex_destroy(&data->sim_lock);
+	
+	// Destroy each philosopher's meal lock.
+	i = 0;
+	while (i < data->num_philo)
+	{
+		pthread_mutex_destroy(&data->philo[i].meal_lock);
+		i++;
+	}
+	// Free the forks array.
+	free(data->forks);
+}
+
+void cleanup(t_data *data)
+{
+	free_mutexes(data);  // This frees and destroys all mutexes and the forks array.
 }

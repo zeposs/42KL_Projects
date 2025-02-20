@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 22:22:12 by zernest           #+#    #+#             */
-/*   Updated: 2025/02/17 23:12:07 by zernest          ###   ########.fr       */
+/*   Updated: 2025/02/20 20:50:09 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_philo
 	int				right_fork_index;
 	pthread_t		thread;
 	struct s_data	*data;
+	pthread_mutex_t meal_lock;
 } t_philo;
 
 typedef struct s_data
@@ -50,6 +51,7 @@ typedef struct s_data
 int		ft_strlen(char const *str);
 void	ft_putstr_err(char *s);
 int		ft_atoi(const char *str);
+int		get_sim_status(t_data *data);
 
 // init
 void		init_struct(t_data *philo, char **av, int ac);
@@ -57,6 +59,8 @@ long long 	current_timestamp(void);
 void 		timer(long long ms);
 void		init_mutexes(t_data *data);
 void		init_philo(t_data *data);
+void		free_mutexes(t_data *data);
+void		cleanup(t_data *data);
 
 // routine
 void		print_action(t_data *data, int id, const char *action);
