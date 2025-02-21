@@ -9,7 +9,7 @@ BONUS_NAME =
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -pthread
+CFLAGS = -Wall -Wextra -Werror
 
 #COLORS!
 RED = \033[0;31m
