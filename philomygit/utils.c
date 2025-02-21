@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 21:41:26 by zernest           #+#    #+#             */
-/*   Updated: 2025/02/04 03:03:35 by zernest          ###   ########.fr       */
+/*   Updated: 2025/02/21 15:18:24 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,24 @@ int	ft_atoi(const char *str)
 	else if (countneg == 1)
 		return (num * -1);
 	return (num);
+}
+
+int	get_sim_status(t_data *data)
+{
+	int	status;
+
+	pthread_mutex_lock(&data->sim_lock);
+	status = data->simulation_end;
+	pthread_mutex_unlock(&data->sim_lock);
+	return (status);
+}
+
+int	get_philo_meal_count(t_philo *philo)
+{
+	int	meal_count;
+
+	pthread_mutex_lock(&philo->meal_lock);
+	meal_count = philo->meals_eaten;
+	pthread_mutex_unlock(&philo->meal_lock);
+	return (meal_count);
 }

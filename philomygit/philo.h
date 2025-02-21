@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 22:22:12 by zernest           #+#    #+#             */
-/*   Updated: 2025/02/20 22:56:34 by zernest          ###   ########.fr       */
+/*   Updated: 2025/02/21 14:49:15 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ typedef struct s_philo
 	int				right_fork_index;
 	pthread_t		thread;
 	struct s_data	*data;
-	pthread_mutex_t meal_lock;
-} t_philo;
+	pthread_mutex_t	meal_lock;
+}	t_philo;
 
 typedef struct s_data
 {
@@ -42,22 +42,22 @@ typedef struct s_data
 	int				simulation_end;
 	long long		start_time;
 	t_philo			philo[200];
-	pthread_mutex_t *forks; 
-	pthread_mutex_t printing_lock;
-	pthread_mutex_t sim_lock;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	printing_lock;
+	pthread_mutex_t	sim_lock;
 }	t_data;
 
 // utils
-int		ft_strlen(char const *str);
-void	ft_putstr_err(char *s);
-int		ft_atoi(const char *str);
-int		get_sim_status(t_data *data);
-int		get_philo_meal_count(t_philo *philo);
+int			ft_strlen(char const *str);
+void		ft_putstr_err(char *s);
+int			ft_atoi(const char *str);
+int			get_sim_status(t_data *data);
+int			get_philo_meal_count(t_philo *philo);
 
 // init
 void		init_struct(t_data *philo, char **av, int ac);
-long long 	current_timestamp(void);
-void 		timer(long long ms);
+long long	current_timestamp(void);
+void		timer(long long ms);
 void		init_mutexes(t_data *data);
 void		init_philo(t_data *data);
 void		free_mutexes(t_data *data);

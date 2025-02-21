@@ -6,16 +6,16 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 20:25:17 by zernest           #+#    #+#             */
-/*   Updated: 2025/02/20 22:28:55 by zernest          ###   ########.fr       */
+/*   Updated: 2025/02/21 14:50:14 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int check_deaths(t_data *data)
+static int	check_deaths(t_data *data)
 {
-	int i;
-	long long diff;
+	int			i;
+	long long	diff;
 
 	i = 0;
 	while (i < data->num_philo)
@@ -36,10 +36,10 @@ static int check_deaths(t_data *data)
 	return (0);
 }
 
-static int check_meals(t_data *data)
+static int	check_meals(t_data *data)
 {
-	int i;
-	int finished;
+	int	i;
+	int	finished;
 
 	if (data->amount_to_eat == -1)
 		return (0);
@@ -50,7 +50,7 @@ static int check_meals(t_data *data)
 		if (get_philo_meal_count(&data->philo[i]) < data->amount_to_eat)
 		{
 			finished = 0;
-			break;
+			break ;
 		}
 		i++;
 	}
@@ -64,26 +64,16 @@ static int check_meals(t_data *data)
 	return (0);
 }
 
-void *end_checker(void *arg)
+void	*end_checker(void *arg)
 {
-	t_data *data = (t_data *)arg;
+	t_data	*data;
 
+	data = (t_data *)arg;
 	while (!get_sim_status(data))
 	{
 		if (check_deaths(data) || check_meals(data))
-			break;
+			break ;
 		usleep(1000);
 	}
 	return (NULL);
-}
-
-int	get_philo_meal_count(t_philo *philo)
-{
-	int meal_count;
-
-	pthread_mutex_lock(&philo->meal_lock);
-	meal_count = philo->meals_eaten;
-	pthread_mutex_unlock(&philo->meal_lock);
-
-	return (meal_count);
 }
