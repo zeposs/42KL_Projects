@@ -1,6 +1,6 @@
 SRC			= main.cpp Contact.cpp PhoneBook.cpp
 
-CC			= g++
+CC			= c++
 RM			= rm -rf
 CFLAGS		= -Wall -Wextra -Werror -std=c++98
 
