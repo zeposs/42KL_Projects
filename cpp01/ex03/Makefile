@@ -1,10 +1,10 @@
-SRC			= main.cpp Zombie.cpp zombieHorde.cpp
+SRC			= main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
 
 CC			= c++
 RM			= rm -rf
 CFLAGS		= -Wall -Wextra -Werror -std=c++98
 
-NAME		= zombie
+NAME		= program
 
 all:	${NAME}
 
