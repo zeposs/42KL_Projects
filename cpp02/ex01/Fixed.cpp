@@ -49,6 +49,16 @@ void Fixed::setRawBits(int const raw)
 	this->fpn = raw;
 }
 
+float Fixed::toFloat(void) const
+{
+	return ((float)fpn / (1 << f_bits));
+}
+
+int Fixed::toInt(void) const
+{
+	return (fpn >> f_bits);
+}
+
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed)
 {
 	os << fixed.toFloat();
