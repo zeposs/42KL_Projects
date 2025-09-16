@@ -10,6 +10,24 @@ ClapTrap::ClapTrap(std::string name): name(name), hp(10), energy(10), atk(0)
 	std::cout << "ClapTrap " GREEN << name << DEFAULT << " has been created." << std::endl;
 }
 
+ClapTrap::ClapTrap(const ClapTrap& other): name(other.name), hp(other.hp), energy(other.energy), atk(other.atk)
+{
+	std::cout << "ClapTrap copy constructor called!" << std::endl;
+}
+
+ClapTrap& ClapTrap::operator=(const ClapTrap& other)
+{
+	std::cout << "ClapTrap copy assignment operator called!" << std::endl;
+	if (this != &other)
+	{
+		this->name = other.name;
+		this->hp = other.hp;
+		this->energy = other.energy;
+		this->atk = other.atk;
+	}
+	return (*this);
+}
+
 ClapTrap::~ClapTrap()
 {
 	std::cout << "ClapTrap " << GREEN << name << DEFAULT << " has been destroyed!" << std::endl;
