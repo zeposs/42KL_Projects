@@ -41,20 +41,20 @@ void	ScavTrap::attack(const std::string& target)
 {
 	if (hp <= 0)
 	{
-		std::cout << "\u27A1 " << "ScavTrap " << GREEN << name << DEFAULT << " is dead :(" << std::endl;
+		std::cout << "\u27A1 " << GREEN << "ScavTrap " << name << DEFAULT << " is dead :(" << std::endl;
 	}
 	else if (energy <= 0)
 	{
-		std::cout << "\u27A1 " << "ScavTrap " << GREEN << name << DEFAULT << " has no energy points." << std::endl;
+		std::cout << "\u27A1 " << GREEN << "ScavTrap " << name << DEFAULT << " has no energy points." << std::endl;
 	}
 	else
 	{
-		std::cout << "\u27A1 " << "ScavTrap " << GREEN << name << DEFAULT << " attacks " << GREEN << target << DEFAULT << ", causing " << MAGENTA << atk << DEFAULT << " damage!" << std::endl;
+		std::cout << "\u27A1 " << GREEN << "ScavTrap " << name << DEFAULT << " attacks " << GREEN << target << DEFAULT << ", causing " << MAGENTA << atk << DEFAULT << " damage!" << std::endl;
 		energy--;
 	}
 }
 
 void ScavTrap::guardGate()
 {
-	std::cout << "ScavTrap " << GREEN << name << DEFAULT << " is now in Gate keeper mode" << std::endl;
+	std::cout << "ScavTrap " << name << " is now in Gate keeper mode" << std::endl;
 }

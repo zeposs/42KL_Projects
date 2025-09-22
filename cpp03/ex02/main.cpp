@@ -1,4 +1,4 @@
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 // int main(void)
 // {
@@ -15,12 +15,12 @@
 
 int main()
 {
-	ScavTrap b("Mako");
+	FragTrap b("Mako");
 	ClapTrap a("Saori");
 
 	a.checkStats();
 	b.checkStats();
 	a.attack("target");
 	b.attack("target");
-	b.guardGate();
+	b.highFiveGuys();
 }
