@@ -4,7 +4,7 @@ CC			= c++
 RM			= rm -rf
 CFLAGS		= -Wall -Wextra -Werror -std=c++98
 
-NAME		= harl
+NAME		= harlFilter
 
 all:	${NAME}
 
