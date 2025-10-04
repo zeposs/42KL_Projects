@@ -1,4 +1,4 @@
-SRC			= main.cpp Cat.cpp Dog.cpp
+SRC			= main.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Animal.cpp
 
 CC			= c++
 RM			= rm -rf
