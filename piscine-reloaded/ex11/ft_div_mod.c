@@ -1,30 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_negative.c                                   :+:      :+:    :+:   */
+/*   ft_div_mod.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/15 16:32:34 by zernest           #+#    #+#             */
-/*   Updated: 2025/10/16 18:17:54 by zernest          ###   ########.fr       */
+/*   Created: 2025/10/16 18:22:14 by zernest           #+#    #+#             */
+/*   Updated: 2025/10/16 18:22:52 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_putchar(char c);
-
-void	ft_is_negative(int n)
+void	ft_div_mod(int a, int b, int *div, int *mod)
 {
-	if (n < 0)
-		ft_putchar('N');
-	else
-		ft_putchar('P');
+	*mod = a % b;
+	*div = a / b;
 }
-
-// int	main(void)
-// {
-// 	ft_is_negative('-');
-// 	ft_putchar('\n');
-// 	return (0);
-// }

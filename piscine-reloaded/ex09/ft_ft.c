@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_negative.c                                   :+:      :+:    :+:   */
+/*   ft_ft.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/15 16:32:34 by zernest           #+#    #+#             */
-/*   Updated: 2025/10/16 18:17:54 by zernest          ###   ########.fr       */
+/*   Created: 2025/10/16 18:18:56 by zernest           #+#    #+#             */
+/*   Updated: 2025/10/16 18:20:52 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
 
-void	ft_putchar(char c);
-
-void	ft_is_negative(int n)
+void	ft_ft(int *nbr)
 {
-	if (n < 0)
-		ft_putchar('N');
-	else
-		ft_putchar('P');
+	*nbr = 42;
 }
-
-// int	main(void)
-// {
-// 	ft_is_negative('-');
-// 	ft_putchar('\n');
-// 	return (0);
-// }
