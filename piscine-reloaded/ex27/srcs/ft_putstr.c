@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/16 23:22:14 by zernest           #+#    #+#             */
-/*   Updated: 2025/10/17 03:10:15 by zernest          ###   ########.fr       */
+/*   Created: 2025/10/17 00:41:55 by zernest           #+#    #+#             */
+/*   Updated: 2025/10/17 03:19:38 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_sqrt(int nb)
-{
-	int	i;
-	int	res;
+#include <unistd.h>
 
-	i = 0;
-	res = 0;
-	if (nb < 0)
-		return (0);
-	while (i < nb)
-	{
-		if (i * i == nb)
-			res = i;
-		i++;
-	}
-	return (res);
+void	ft_putchar_err(char c)
+{
+	write (2, &c, 1);
 }
 
-// #include <stdio.h>
-// int main(void)
-// {
-// 	printf("%d\n",(ft_sqrt()));
-// 	return(0);
-// }
+void	ft_putstr_err(char *str)
+{
+	int	i;
+
+	if (!str)
+		return ;
+	i = 0;
+	while (str[i] != '\0')
+	{
+		ft_putchar_err(str[i]);
+		i++;
+	}
+}

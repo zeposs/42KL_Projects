@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_count_if.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/16 23:22:14 by zernest           #+#    #+#             */
-/*   Updated: 2025/10/17 03:10:15 by zernest          ###   ########.fr       */
+/*   Created: 2025/10/17 03:10:29 by zernest           #+#    #+#             */
+/*   Updated: 2025/10/17 03:12:38 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_sqrt(int nb)
+int	ft_count_if(char **tab, int (*f)(char *))
 {
+	int	count;
 	int	i;
-	int	res;
 
+	count = 0;
 	i = 0;
-	res = 0;
-	if (nb < 0)
-		return (0);
-	while (i < nb)
+	while (tab[i] != 0)
 	{
-		if (i * i == nb)
-			res = i;
+		if (f(tab[i]) == 1)
+			count++;
 		i++;
 	}
-	return (res);
+	return (count);
 }
-
-// #include <stdio.h>
-// int main(void)
-// {
-// 	printf("%d\n",(ft_sqrt()));
-// 	return(0);
-// }
