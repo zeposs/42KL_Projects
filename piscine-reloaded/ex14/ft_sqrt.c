@@ -6,26 +6,24 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 23:22:14 by zernest           #+#    #+#             */
-/*   Updated: 2025/10/17 03:10:15 by zernest          ###   ########.fr       */
+/*   Updated: 2025/10/17 03:42:07 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_sqrt(int nb)
 {
 	int	i;
-	int	res;
 
 	i = 0;
-	res = 0;
 	if (nb < 0)
 		return (0);
-	while (i < nb)
+	while (i * i <= nb && i <= 46340)
 	{
 		if (i * i == nb)
-			res = i;
+			return (i);
 		i++;
 	}
-	return (res);
+	return (0);
 }
 
 // #include <stdio.h>

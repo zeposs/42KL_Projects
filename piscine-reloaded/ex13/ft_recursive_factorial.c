@@ -6,13 +6,13 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 23:06:56 by zernest           #+#    #+#             */
-/*   Updated: 2025/10/16 23:12:52 by zernest          ###   ########.fr       */
+/*   Updated: 2025/10/17 03:49:58 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_recursive_factorial(int n)
 {
-	if (n < 0)
+	if (n < 0 || n > 12)
 		return (0);
 	if (n == 0 || n == 1)
 		return (1);
