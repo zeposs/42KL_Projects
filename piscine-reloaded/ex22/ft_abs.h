@@ -6,13 +6,13 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 02:51:43 by zernest           #+#    #+#             */
-/*   Updated: 2025/10/17 06:36:55 by zernest          ###   ########.fr       */
+/*   Updated: 2025/10/21 22:49:36 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_ABS_H
 # define FT_ABS_H
 
-# define ABS(Value) ((Value) < 0 ? -(Value) : (Value))
+# define ABS(Value) ((Value) * ((Value) > 0) - (Value) * ((Value) < 0))
 
 #endif
