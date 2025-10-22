@@ -64,3 +64,89 @@ std::ostream& operator<<(std::ostream& os, const Fixed& fixed)
 	os << fixed.toFloat();
 	return os;
 }
+
+bool Fixed::operator>(const Fixed& other) const{
+	return (this->fpn > other.fpn);
+}
+
+bool Fixed::operator<(const Fixed& other) const{
+	return (this->fpn < other.fpn);
+}
+
+bool Fixed::operator>=(const Fixed& other) const{
+	return (this->fpn >= other.fpn);
+}
+
+bool Fixed::operator<=(const Fixed& other) const{
+	return (this->fpn <= other.fpn);
+}
+
+bool Fixed::operator==(const Fixed& other) const{
+	return (this->fpn == other.fpn);
+}
+
+bool Fixed::operator!=(const Fixed& other) const{
+	return (this->fpn != other.fpn);
+}
+
+Fixed Fixed::operator+(const Fixed& other) const{
+	return (this->toFloat() + other.toFloat());
+}
+
+Fixed Fixed::operator-(const Fixed& other) const{
+	return (this->toFloat() - other.toFloat());
+}
+
+Fixed Fixed::operator*(const Fixed& other) const{
+	return (this->toFloat() * other.toFloat());
+}
+
+Fixed Fixed::operator/(const Fixed& other) const{
+	return (this->toFloat() / other.toFloat());
+}
+
+Fixed& Fixed::operator++()
+{
+	this->fpn++;
+	return (*this);
+}
+
+Fixed Fixed::operator++(int)
+{
+	Fixed temp = *this;
+	this->fpn++;
+	return (temp);
+}
+
+Fixed& Fixed::operator--()
+{
+	this->fpn--;
+	return (*this);
+}
+
+Fixed Fixed::operator--(int)
+{
+	Fixed temp = *this;
+	this->fpn--;
+	return (temp);
+}
+
+Fixed& Fixed::min(Fixed& a, Fixed& b)
+{
+	return (a < b ? a : b);
+}
+
+const Fixed& Fixed::min(const Fixed& a, const Fixed& b)
+{
+	return (a < b ? a : b);
+}
+
+Fixed& Fixed::max(Fixed& a, Fixed& b)
+{
+	return (a > b ? a : b);
+}
+
+const Fixed& Fixed::max(const Fixed& a, const Fixed& b)
+{
+	return (a > b ? a : b);
+}
