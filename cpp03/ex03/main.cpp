@@ -24,6 +24,8 @@ int main()
 	DiamondTrap diamond("DiamondTrap");
 
 	diamond.attack("Claptrap");
+	diamond.checkStats();
 	clap.takeDamage(30);
 	clap.attack("diamond");
+	diamond.whoAmI();
 }
