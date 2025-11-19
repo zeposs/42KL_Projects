@@ -6,10 +6,11 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 13:55:01 by zernest           #+#    #+#             */
-/*   Updated: 2025/11/19 21:39:07 by zernest          ###   ########.fr       */
+/*   Updated: 2025/11/19 21:49:54 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Form.hpp"
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat() : _name("Random person"), _grade(1)
@@ -84,4 +85,17 @@ std::ostream &operator<<(std::ostream &os, const Bureaucrat &b)
 {
 	os  << b.getName() << ", bureaucrat grade " << b.getGrade();
 	return (os);
+}
+
+void    Bureaucrat::signForm(Form& form)
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << this->_name << " signed " << form.getName() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << this->_name << " couldn't sign " << form.getName() << " because " << e.what() << '\n';
+	}
 }
