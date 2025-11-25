@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 13:55:01 by zernest           #+#    #+#             */
-/*   Updated: 2025/11/19 21:39:07 by zernest          ###   ########.fr       */
+/*   Updated: 2025/11/24 20:21:34 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name), _grade(oth
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
+	std::cout << "Bureaucrat copy assignment constructor called\n";
 	if (this != &other)
 		this->_grade = other._grade;
 	return (*this);

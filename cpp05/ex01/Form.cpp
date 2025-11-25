@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 21:02:32 by zernest           #+#    #+#             */
-/*   Updated: 2025/11/19 22:06:50 by zernest          ###   ########.fr       */
+/*   Updated: 2025/11/24 20:24:25 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ Form::Form(const Form &other) : _name(other._name), _isSigned(other._isSigned), 
 
 Form &Form::operator=(const Form &other)
 {
+	std::cout << "Form copy assignment constructor called\n";
 	if (this != &other)
 		this->_isSigned = other._isSigned;
 	return (*this);

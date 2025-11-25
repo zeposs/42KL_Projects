@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 19:47:36 by zernest           #+#    #+#             */
-/*   Updated: 2025/11/25 17:20:10 by zernest          ###   ########.fr       */
+/*   Updated: 2025/11/25 19:28:40 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,35 @@ int main()
 
 	AForm* form;
 
-	form = someRandomIntern.makeForm("robotomy request", "Bender");
-	if (form)
+	try
+	{
+		form = someRandomIntern.makeForm("robotomy request", "Bender");
+		if (form)
+			delete form;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	try 
+	{
+		form = someRandomIntern.makeForm("shrubbery creation", "Garden");
+		if (form)
+			delete form;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	try
+	{
+		form = someRandomIntern.makeForm("not real form", "Home");
+		if (form)
 		delete form;
-
-	form = someRandomIntern.makeForm("shrubbery creation", "Garden");
-	if (form)
-		delete form;
-
-	form = someRandomIntern.makeForm("not real form", "Home");
-	if (form)
-		delete form;
-
-	return 0;
+		return 0;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 }

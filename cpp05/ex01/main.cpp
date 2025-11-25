@@ -10,25 +10,6 @@
 
 int main() {
     try {
-        std::cout << YELLOW << "\n== OCF TEST ===\n" << RESET;
-
-        Bureaucrat mc;
-        Bureaucrat tara(mc);
-        mc = tara;
-
-        std::cout << '\n';
-
-        Form tax;
-        Form evasion(tax);
-        tax = evasion;
-
-        std::cout << '\n'; 
-    }
-    catch (std::exception &e) {
-        std::cout << RED << e.what() << '\n' << RESET;
-    }
-
-    try {
         std::cout << YELLOW << "\n== GRADE TO SIGN TEST===\n" << RESET;
         Form fraud("FraudForm", 0, 1);
         std::cout << fraud << '\n';
