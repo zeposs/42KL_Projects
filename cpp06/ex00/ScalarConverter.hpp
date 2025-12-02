@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 15:11:51 by zernest           #+#    #+#             */
-/*   Updated: 2025/12/01 23:45:36 by zernest          ###   ########.fr       */
+/*   Updated: 2025/12/02 21:34:45 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <climits>
 #include <cmath>
+#include <string>
 #include <iomanip>
 
 enum LiteralType {

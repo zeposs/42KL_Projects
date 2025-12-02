@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 19:58:11 by zernest           #+#    #+#             */
-/*   Updated: 2025/12/01 23:50:41 by zernest          ###   ########.fr       */
+/*   Updated: 2025/12/02 21:47:44 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ bool ScalarConverter::isInt(std::string &literal)
 
 	if (literal[i] == '+' || literal[i] == '-')
 		i++;
-	if (i == literal.length())
+	if (i == (int)literal.length())
 		return (false);
-	while (i < literal.length())
+	while (i < (int)literal.length())
 	{
 		if (!std::isdigit(literal[i]))
 			return (false);
@@ -102,8 +102,101 @@ LiteralType ScalarConverter::detectType (std::string &literal)
 	if (isDouble(literal))
 		return DOUBLE;
 	// if (isInvalid(literal))
-		return INVALID;
+	return INVALID;
+}
+
+void ScalarConverter::printConv(char c, long l, float f, double d)
+{
+	std::cout << "char: ";
+	if (l <= 0 || l >= 127 )
+		std::cout << "impossible\n";
+	else if (!std::isprint(c))
+		std::cout << "non displayable\n";
+	else
+		std::cout << "'" << c << "'" << '\n';
+
+	std::cout << "int: ";
+	if (l < INT_MIN || l > INT_MAX)
+		std::cout << "impossible\n";
+	else
+		std::cout << static_cast<int>(l) << std::endl;
 	
+	std::cout << "float: ";
+	if (std::isnan(f))
+		std::cout << "nanf\n";
+	else if (std::isinf(f))
+		std::cout << (f < 0 ? "-inff\n" : "+inff\n");
+	else
+		std::cout << std::fixed << std::setprecision(1) << f << "f\n";
+	
+	std::cout << "double: ";
+	if (std::isnan(d))
+		std::cout << "nan\n";
+	else if (std::isinf(d))
+		std::cout << (d < 0 ? "-inf\n" : "+inf\n");
+	else
+		std::cout << std::fixed << std::setprecision(1) << d << '\n';
+	}
+
+void ScalarConverter::convert(std::string &literal)
+	{
+		if (isChar(literal))
+	{
+		char c = literal[0];
+		long i = static_cast<long>(c);
+		float f = static_cast<float>(c);
+		double d = static_cast<double>(c);
+		printConv(c, i, f, d);
+	}
+	else if (isInt(literal))
+	{
+		long i = atol(literal.c_str());
+		char c = static_cast<char>(i);
+		float f = static_cast<float>(i);
+		double d = static_cast<double>(i);
+		printConv(c, i, f, d);
+	}
+	else if (isFloat(literal))
+	{
+		float f = strtof(literal.c_str(), 0);
+		char c = static_cast<char>(f);
+		long i = static_cast<long>(f);
+		double d = static_cast<double>(f);
+		printConv(c, i, f, d);
+	}
+	else if (isDouble(literal))
+	{
+		double d = strtod(literal.c_str(), 0);
+		char c = static_cast<char>(d);
+		long i = static_cast<long>(d);
+		float f = static_cast<float>(d);
+		printConv(c, i, f, d);
+	}
+	else if (isInvalid(literal))
+	{
+		if (literal[literal.length() - 1] == 'f')
+		{
+			float f = (literal == "nanf") ? NAN :
+					  (literal == "+inff") ? INFINITY : -INFINITY;
+			char c = 0;
+			long i = 0;
+			double d = static_cast<double>(f);
+			printConv(c, i, f, d);
+		}
+		else  // double special
+		{
+			double d = (literal == "nan") ? NAN :
+			(literal == "+inf") ? INFINITY : -INFINITY;
+			char c = 0;
+			long i = 0;
+			float f = static_cast<float>(d);
+			printConv(c, i, f, d);
+		}
+	}
+	else
+	{
+		std::cout << "Error: invalid literal" << std::endl;
+	}
 }
 
 // void ScalarConverter::fromChar(std::string &literal)
@@ -140,97 +233,3 @@ LiteralType ScalarConverter::detectType (std::string &literal)
 
 // 	float value = std::stol(core.c_str());
 // }
-
-void ScalarConverter::printConv(char c, long l, float f, double d)
-{
-	std::cout << "char: ";
-	if (l <= 0 || l >= 127 )
-		std::cout << "impossible\n";
-	else if (!std::isprint(c))
-		std::cout << "non displayable\n";
-	else
-		std::cout << "'" << c << "'" << '\n';
-		
-	std::cout << "int: ";
-	if (l < INT_MIN || l > INT_MAX)
-		std::cout << "impossible\n";
-	else
-		std::cout << static_cast<int>(l) << std::endl;
-		
-	std::cout << "float: ";
-	if (std::isnan(f))
-		std::cout << "nanf\n";
-	else if (std::isinf(f))
-		std::cout << (f < 0 ? "-inff\n" : "+inff\n");
-	else
-		std::cout << std::fixed << std::setprecision(1) << f << "f\n";
-	
-	std::cout << "double: ";
-	if (std::isnan(d))
-		std::cout << "nan\n";
-	else if (std::isinf(d))
-		std::cout << (d < 0 ? "-inf\n" : "+inf\n");
-	else
-		std::cout << std::fixed << std::setprecision(1) << d << '\n';
-}
-
-void ScalarConverter::convert(std::string &literal)
-{
-	if (isChar(literal))
-	{
-		char c = literal[0];
-		long i = static_cast<long>(c);
-		float f = static_cast<float>(c);
-		double d = static_cast<double>(c);
-		printConv(c, i, f, d);
-	}
-	else if (isInt(literal))
-	{
-		long i = std::stol(literal);  // convert safely; you already checked isInt
-		char c = static_cast<char>(i);
-		float f = static_cast<float>(i);
-		double d = static_cast<double>(i);
-		printConv(c, i, f, d);
-	}
-	else if (isFloat(literal))
-	{
-		float f = std::stof(literal);  // remove trailing 'f' inside isFloat already
-		char c = static_cast<char>(f);
-		long i = static_cast<long>(f);
-		double d = static_cast<double>(f);
-		printConv(c, i, f, d);
-	}
-	else if (isDouble(literal))
-	{
-		double d = std::stod(literal);
-		char c = static_cast<char>(d);
-		long i = static_cast<long>(d);
-		float f = static_cast<float>(d);
-		printConv(c, i, f, d);
-	}
-	else if (isInvalid(literal))
-	{
-		if (literal.back() == 'f')  // float special
-		{
-			float f = (literal == "nanf") ? NAN :
-					  (literal == "+inff") ? INFINITY : -INFINITY;
-			char c = 0;
-			long i = 0;
-			double d = static_cast<double>(f);
-			printConv(c, i, f, d);
-		}
-		else  // double special
-		{
-			double d = (literal == "nan") ? NAN :
-					   (literal == "+inf") ? INFINITY : -INFINITY;
-			char c = 0;
-			long i = 0;
-			float f = static_cast<float>(d);
-			printConv(c, i, f, d);
-		}
-	}
-	else
-	{
-		std::cout << "Error: invalid literal" << std::endl;
-	}
-}
