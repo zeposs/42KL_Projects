@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 19:58:11 by zernest           #+#    #+#             */
-/*   Updated: 2025/12/02 21:47:44 by zernest          ###   ########.fr       */
+/*   Updated: 2025/12/03 17:46:05 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,11 +136,11 @@ void ScalarConverter::printConv(char c, long l, float f, double d)
 		std::cout << (d < 0 ? "-inf\n" : "+inf\n");
 	else
 		std::cout << std::fixed << std::setprecision(1) << d << '\n';
-	}
+}
 
 void ScalarConverter::convert(std::string &literal)
-	{
-		if (isChar(literal))
+{
+	if (isChar(literal))
 	{
 		char c = literal[0];
 		long i = static_cast<long>(c);
