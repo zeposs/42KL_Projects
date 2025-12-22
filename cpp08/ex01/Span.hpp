@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 17:39:54 by zernest           #+#    #+#             */
-/*   Updated: 2025/12/22 18:55:26 by zernest          ###   ########.fr       */
+/*   Updated: 2025/12/23 04:00:28 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ class Span
 		int		shortestSpan() const;
 		int		longestSpan() const;
 
+		void addMultiple(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+
 		class SpanFullException : public std::exception {
 			public:
 				const char* what() const throw() { return ("Span is already full!"); }
@@ -42,12 +44,7 @@ class Span
 
 		class NotEnoughIntegersException : public std::exception {
 			public:
-				const char* what() const throw() { return ("Ensure there is more than 2 integers!"); }
-		};
-
-		class NotIntException : public std::exception {
-			public:
-				const char* what() const throw() { return ("Span only excepts integers!"); }
+				const char* what() const throw() { return ("Ensure there is at least 2 integers!"); }
 		};
 };
 

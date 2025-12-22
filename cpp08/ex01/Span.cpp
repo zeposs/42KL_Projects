@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 17:58:41 by zernest           #+#    #+#             */
-/*   Updated: 2025/12/22 18:55:23 by zernest          ###   ########.fr       */
+/*   Updated: 2025/12/23 03:51:15 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void	Span::addNumber(int n)
 {
 	if (_data.size() >= _size)
 		throw Span::SpanFullException();
-	if (n < 0 || n > INT_MAX)
-		throw Span::NotIntException();
 	_data.push_back(n);
 }
 
@@ -68,4 +66,11 @@ int	Span::longestSpan() const
 	int	min = *std::min_element(_data.begin(), _data.end());
 
 	return (max - min);
+}
+
+void	Span::addMultiple(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+	if (_data.size() + std::distance(begin, end) > _size)
+		throw SpanFullException();
+	_data.insert(_data.end(), begin, end);
 }
