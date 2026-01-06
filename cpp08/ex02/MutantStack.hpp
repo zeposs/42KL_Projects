@@ -1,0 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   MutantStack.hpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/23 04:02:41 by zernest           #+#    #+#             */
+/*   Updated: 2026/01/05 15:35:07 by zernest          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef MUTANTSTACK_HPP
+#define MUTANTSTACK_HPP
+
+#include <stack>
+#include <deque>
+#include <iterator>
+
+template <typename T>
+class MutantStack : public std::stack<T>
+{
+	public:
+		MutantStack();
+		MutantStack(MutantStack const &other);
+		MutantStack &operator=(MutantStack const &other);
+		~MutantStack();
+
+		typedef typename std::stack<T>::container_type::iterator iterator;
+		typedef typename std::stack<T>::container_type::const_iterator const_iterator;
+		typedef typename std::stack<T>::container_type::reverse_iterator reverse_iterator;
+		typedef typename std::stack<T>::container_type::const_reverse_iterator const_reverse_iterator;
+
+		iterator begin() { return (this->c.begin()); }
+		iterator end() { return (this->c.end()); }
+		const_iterator begin() const { return (this->c.begin()); }
+		const_iterator end() const { return (this->c.end()); }
+		reverse_iterator rbegin() { return (this->c.rbegin()); }
+		reverse_iterator rend() { return (this->c.rend()); }
+		const_reverse_iterator rbegin() const { return (this->c.rbegin()); }
+		const_reverse_iterator rend() const { return (this->c.rend()); }
+};
+
+#include "MutantStack.tpp"
+
+#endif
