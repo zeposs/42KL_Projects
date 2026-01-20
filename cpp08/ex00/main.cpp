@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 21:23:36 by zernest           #+#    #+#             */
-/*   Updated: 2025/12/17 17:54:03 by zernest          ###   ########.fr       */
+/*   Updated: 2026/01/20 16:53:37 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,14 @@ int main()
 
 	try
 	{
-		std::cout << "Working test:\n";
+		std::cout << "=====Working test=====\n";
 		std::vector<int>::iterator it = easyfind(v, 30);
+		std::cout << "Found: " << *it << std::endl;
+		it = easyfind(v, 20);
+		std::cout << "Found: " << *it << std::endl;
+		it = easyfind(v, 10);
+		std::cout << "Found: " << *it << std::endl;
+		it = easyfind(v, 40);
 		std::cout << "Found: " << *it << std::endl;
 	}
 	catch (std::exception &e)
@@ -32,7 +38,7 @@ int main()
 	}
 	try
 	{
-		std::cout << "Fail test:\n";
+		std::cout << "=====Fail test=====\n";
 		std::vector<int>::iterator it = easyfind(v, 50);
 		std::cout << "Found: " << *it << std::endl;
 	}
