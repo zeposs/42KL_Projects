@@ -26,6 +26,9 @@ class PmergeMe
 		void printContainers(void);
 		template <typename Container>
 		void mergeInsert(Container &c);
+		template <typename Container>
+		void binarySearchInsert(Container &sorted, int value);
+		std::vector<size_t> jacobsThalGenerate(size_t n);
 
 };
 
