@@ -25,10 +25,17 @@ class PmergeMe
 		void parseInput(char **args);
 		void printContainers(void);
 		template <typename Container>
-		void mergeInsert(Container &c);
+		void mergeInsert(Container &c, size_t &comparisonCount);
 		template <typename Container>
-		void binarySearchInsert(Container &sorted, int value);
+		// void binarySearchInsert(Container &sorted, int value);
+		void binarySearchInsert(Container &sorted,
+                                  int value,
+                                  size_t &comparisonCount);
+		template <typename Container>
+		void binarySearchInsertRestricted(
+    Container &sorted, int value, size_t &comparisonCount, size_t maxIndex);
 		std::vector<size_t> jacobsThalGenerate(size_t n);
+		std::vector<size_t> buildInsertionOrder(size_t n);
 
 };
 

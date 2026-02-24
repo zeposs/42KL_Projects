@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 19:05:43 by zernest           #+#    #+#             */
-/*   Updated: 2026/02/23 22:28:31 by zernest          ###   ########.fr       */
+/*   Updated: 2026/02/24 21:12:21 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,29 @@ std::vector<size_t> PmergeMe::jacobsThalGenerate(size_t n)
 	return indices;
 }
 
+std::vector<size_t> PmergeMe::buildInsertionOrder(size_t n)
+{
+	std::vector<size_t> jacob = jacobsThalGenerate(n);
+	std::vector<size_t> order;
+
+	size_t prev = 0;
+
+	for (size_t i = 0; i < jacob.size(); i++)
+	{
+		size_t curr = jacob[i];
+
+		for (size_t j = curr; j > prev; j--)
+			order.push_back(j);
+
+		prev = curr;
+	}
+
+	for (size_t j = n; j > prev; j--)
+		order.push_back(j);
+
+	return order;
+}
+
 void PmergeMe::checkDuplicate(int value)
 {
 	for (size_t i = 0; i < _vec.size(); i++)
@@ -106,7 +129,9 @@ void PmergeMe::parseInput(char **args)
 	}
 	for (size_t i = 0; i < _vec.size(); i++)
 		_deq.push_back(_vec[i]);
-	mergeInsert(_vec);
-	mergeInsert(_deq);
+	size_t comparisonCount = 0;
+	mergeInsert(_vec, comparisonCount);
+	std::cout << "Comparisons: " << comparisonCount << std::endl;
+	mergeInsert(_deq, comparisonCount);
 	printContainers();
 }
