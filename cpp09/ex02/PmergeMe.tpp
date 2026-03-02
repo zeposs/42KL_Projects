@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 19:19:30 by zernest           #+#    #+#             */
-/*   Updated: 2026/02/25 21:18:14 by zernest          ###   ########.fr       */
+/*   Updated: 2026/03/02 19:08:12 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,10 @@ void PmergeMe::mergeInsert(Container &c, size_t &comparisonCount)
 // 	}
 
 	std::vector<size_t> order = buildInsertionOrder(pending.size());
-	std::cout << "Insertion order: ";
-	for (size_t i = 0; i < order.size(); i++)
-		std::cout << order[i] << " ";	
-	std::cout << std::endl;
+	// std::cout << "Insertion order: ";
+	// for (size_t i = 0; i < order.size(); i++)
+	// 	std::cout << order[i] << " ";	
+	// std::cout << std::endl;
 
 	for (size_t i = 0; i < order.size(); i++)
 	{
@@ -159,4 +159,15 @@ void PmergeMe::binarySearchInsertRestricted(
     }
 
     sorted.insert(sorted.begin() + left, value);
+}
+
+template <typename Container>
+double	PmergeMe::run_sort(Container &c)
+{
+	size_t comparisonCount = 0;
+	clock_t start = clock();
+	mergeInsert(c, comparisonCount);
+	clock_t end = clock();
+	double time = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
+	return (time);
 }

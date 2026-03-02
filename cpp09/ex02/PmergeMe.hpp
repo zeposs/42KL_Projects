@@ -9,6 +9,8 @@
 #include <vector>
 #include <deque>
 #include <climits>
+#include <ctime>
+#include <iomanip>
 
 class PmergeMe
 {
@@ -22,6 +24,7 @@ class PmergeMe
 		PmergeMe(const PmergeMe &other);
 		PmergeMe &operator=(const PmergeMe &other);
 		~PmergeMe();
+		void	printResult(void);
 		void parseInput(char **args);
 		void printContainers(void);
 		template <typename Container>
@@ -34,6 +37,8 @@ class PmergeMe
 		template <typename Container>
 		void binarySearchInsertRestricted(
     Container &sorted, int value, size_t &comparisonCount, size_t maxIndex);
+		template <typename Container>
+		double	run_sort(Container &c);
 		std::vector<size_t> jacobsThalGenerate(size_t n);
 		std::vector<size_t> buildInsertionOrder(size_t n);
 

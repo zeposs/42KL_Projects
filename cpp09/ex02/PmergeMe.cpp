@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 19:05:43 by zernest           #+#    #+#             */
-/*   Updated: 2026/02/24 21:12:21 by zernest          ###   ########.fr       */
+/*   Updated: 2026/03/02 19:11:42 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,9 +129,27 @@ void PmergeMe::parseInput(char **args)
 	}
 	for (size_t i = 0; i < _vec.size(); i++)
 		_deq.push_back(_vec[i]);
-	size_t comparisonCount = 0;
-	mergeInsert(_vec, comparisonCount);
-	std::cout << "Comparisons: " << comparisonCount << std::endl;
-	mergeInsert(_deq, comparisonCount);
-	printContainers();
+
+	printResult();
+}
+
+void PmergeMe::printResult(void)
+{
+	double vecTime, deqTime;
+	std::cout << "Before:\t";
+	for (size_t i = 0; i < _vec.size(); i++)
+	{
+		std::cout << _vec[i] << " ";
+	}
+	std::cout << std::endl;
+	vecTime = run_sort(_vec);
+	deqTime = run_sort(_deq);
+	std::cout << "After:\t";
+	for (size_t i = 0; i < _vec.size(); i++)
+	{
+		std::cout << _vec[i] << " ";
+	}
+	std::cout << std::endl;
+	std::cout << "Time to process a range of " << _vec.size() << " elements with std::vector : " << vecTime << " µs\n";
+	std::cout << "Time to process a range of " << _deq.size() << " elements with std::deque  : " << deqTime << " µs\n";
 }
