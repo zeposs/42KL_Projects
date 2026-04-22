@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 21:07:35 by zernest           #+#    #+#             */
-/*   Updated: 2024/12/16 22:04:39 by zernest          ###   ########.fr       */
+/*   Updated: 2026/04/22 09:58:29 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,20 @@ int	map_check(t_mlx **mlx, int size_y)
 	{
 		if (ft_strchr(map[row], ' ') != NULL || ft_strchr(map[row],
 				'\t') != NULL)
+		{
+			ft_putstr_err("Please ensure that the map has no tabs or spaces.\n");
 			return (0);
+		}
 		if (is_surrounded(row + 1, size_y, map[row]) == 0)
+		{
+			ft_putstr_err("Please ensure that the map is properly enclosed.\n");
 			return (0);
+		}
 		if (count_elements((*mlx)->map_data, row + 1, size_y, map[row]) == 0)
+		{
+			ft_putstr_err("Please ensure that there is a valid number of elements.\n");
 			return (0);
+		}
 		row++;
 	}
 	return (check_element_count((*mlx)->map_data));

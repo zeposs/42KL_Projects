@@ -6,7 +6,7 @@
 /*   By: zernest <zernest@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 17:22:55 by zernest           #+#    #+#             */
-/*   Updated: 2024/12/16 22:06:48 by zernest          ###   ########.fr       */
+/*   Updated: 2026/04/22 09:33:12 by zernest          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@
 # define EXIT_OPEN 2
 # define WIN 3
 
-# define P_PATH "assets/objects/mako.xpm"
-# define W_PATH "assets/objects/sun.xpm"
-# define BG_PATH "assets/objects/grass.xpm"
-# define EXIT_OPEN_PATH "assets/objects/minecraft_bed.xpm"
-# define EXIT_CLOS_PATH "assets/objects/cross.xpm"
-# define C_PATH "assets/objects/tank.xpm"
+# define P_PATH "assets/objects/steve.xpm"
+# define W_PATH "assets/objects/deepslate.xpm"
+# define BG_PATH "assets/objects/stone.xpm"
+# define EXIT_OPEN_PATH "assets/objects/open_trapdoor.xpm"
+# define EXIT_CLOS_PATH "assets/objects/spruce_trapdoor.xpm"
+# define C_PATH "assets/objects/diamond.xpm"
 
 typedef struct s_mlx_data
 {
